@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-Use Throwable;
+use Throwable;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\App;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -32,11 +32,9 @@ class Handler extends ExceptionHandler
      * Report or log an exception.
      *
      * @param  \Exception  $exception
-     * @return void
      */
     public function report(Throwable $exception)
     {
-
         if (app()->bound('sentry') && $this->shouldReport($exception)) {
             app('sentry')->captureException($exception);
         }

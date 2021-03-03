@@ -15,7 +15,11 @@ class OrganizationCollection extends ResourceCollection
     public function toArray($request)
     {
         return $this->collection->map->only(
-            'id', 'name', 'phone', 'city', 'deleted_at'
+            'id',
+            'name',
+            'phone',
+            'city',
+            'deleted_at'
         );
     }
 }

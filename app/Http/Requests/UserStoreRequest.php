@@ -33,5 +33,4 @@ class UserStoreRequest extends FormRequest
             'photo' => ['nullable', 'image'],
         ];
     }
-
 }

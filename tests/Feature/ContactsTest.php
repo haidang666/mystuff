@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
+use Tests\TestCase;
 use App\Models\User;
 use App\Models\Account;
 use App\Models\Contact;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ContactsTest extends TestCase
@@ -40,7 +40,7 @@ class ContactsTest extends TestCase
             ->assertPropValue('contacts.data', function ($contacts) {
                 $this->assertEquals(
                     ['id', 'name', 'phone', 'city',
-                    'deleted_at', 'organization'],
+                    'deleted_at', 'organization', ],
                     array_keys($contacts[0])
                 );
             });
@@ -52,7 +52,7 @@ class ContactsTest extends TestCase
             Contact::factory()->count(5)->make()
         )->first()->update([
             'first_name' => 'Greg',
-            'last_name' => 'Andersson'
+            'last_name' => 'Andersson',
         ]);
 
         $this->actingAs($this->user)

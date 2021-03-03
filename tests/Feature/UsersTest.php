@@ -2,10 +2,9 @@
 
 namespace Tests\Feature;
 
+use Tests\TestCase;
 use App\Models\User;
 use App\Models\Account;
-use App\Models\Contact;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UsersTest extends TestCase
@@ -36,9 +35,10 @@ class UsersTest extends TestCase
             ->assertStatus(200)
             ->assertPropCount('users.data', 5)
             ->assertPropValue('users.data', function ($users) {
-                $this->assertEquals([
+                $this->assertEquals(
+                    [
                     'id', 'name', 'email', 'owner',
-                    'photo', 'deleted_at'
+                    'photo', 'deleted_at',
                 ],
                     array_keys($users[0])
                 );
@@ -51,7 +51,7 @@ class UsersTest extends TestCase
 
         User::first()->update([
             'first_name' => 'Greg',
-            'last_name' => 'Andersson'
+            'last_name' => 'Andersson',
         ]);
 
         $this->actingAs($this->user)

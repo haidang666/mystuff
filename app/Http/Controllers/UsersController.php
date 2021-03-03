@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserDeleteRequest;
-use App\Http\Requests\UserStoreRequest;
-use App\Http\Requests\UserUpdateRequest;
-use App\Http\Resources\UserCollection;
-use App\Http\Resources\UserResource;
 use App\Models\User;
 use Inertia\Inertia;
+use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\UserCollection;
+use App\Http\Requests\UserStoreRequest;
 use Illuminate\Support\Facades\Request;
+use App\Http\Requests\UserDeleteRequest;
+use App\Http\Requests\UserUpdateRequest;
 use Illuminate\Support\Facades\Redirect;
 
 class UsersController extends Controller
