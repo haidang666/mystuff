@@ -13,8 +13,10 @@ abstract class Model extends Eloquent
 
     public function resolveRouteBinding($value, $field = null)
     {
-        return in_array(SoftDeletes::class, class_uses($this))
-            ? $this->where($this->getRouteKeyName(), $value)->withTrashed()->first()
-            : parent::resolveRouteBinding($value);
+        // return in_array(SoftDeletes::class, class_uses($this))
+        //     ? $this->where($this->getRouteKeyName(), $value)->withTrashed()->first()
+        //     : parent::resolveRouteBinding($value);
+        
+        return parent::resolveRouteBinding($value, $field);
     }
 }

@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             'owner' => true,
         ]);
 
-        if (App::environment('testing')) {
+        if (app()->environment('testing')) {
             User::factory()->count(5)->create([
                 'account_id' => $account->id,
             ]);

@@ -15,7 +15,9 @@ parameters:
     checkMissingIterableValueType: false
     level: 5
     ignoreErrors:
-        - '#Unsafe usage of new static#'
-        - '#Call to an undefined method Illuminate\\Support\\HigherOrder#'
-        - path: 'database/factories/*'
-          message: '#Undefined variable: \$factory#'
+#        - '#Unsafe usage of new static#'
+#        - '#Call to an undefined method Illuminate\\Support\\HigherOrder#'
+#        - path: 'database/factories/*'
+#          message: '#Undefined variable: \$factory#'
+        - '#should return array but returns Illuminate\\Support\\HigherOrderCollectionProxy#'
+        - '#Method Illuminate\\Support\\Enumerable<mixed,mixed>::only\(\)#'

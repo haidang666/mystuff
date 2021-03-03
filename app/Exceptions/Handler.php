@@ -21,7 +21,7 @@ class Handler extends ExceptionHandler
     /**
      * A list of the inputs that are never flashed for validation exceptions.
      *
-     * @var array
+     * @var string[]
      */
     protected $dontFlash = [
         'password',
@@ -47,7 +47,7 @@ class Handler extends ExceptionHandler
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function render($request, Throwable $exception)
     {
@@ -56,11 +56,11 @@ class Handler extends ExceptionHandler
         if (
             (App::environment('production'))
             && $request->header('X-Inertia')
-            && in_array($response->status(), [500, 503, 404, 403])
+            && in_array($response->getStatusCode(), [500, 503, 404, 403])
         ) {
-            return Inertia::render('Error', ['status' => $response->status()])
+            return Inertia::render('Error', ['status' => $response->getStatusCode()])
                 ->toResponse($request)
-                ->setStatusCode($response->status());
+                ->setStatusCode($response->getStatusCode());
         }
 
         return $response;
