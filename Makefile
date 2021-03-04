@@ -49,6 +49,7 @@ phpsalm:
 phpstyle:
 	@$(MAKE) phpstan
 	@$(MAKE) phpsalm
+	@$(MAKE) phpfix
 
 phpfix:
 	@php ./vendor/bin/php-cs-fixer fix --config .php_cs
