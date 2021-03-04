@@ -54,5 +54,5 @@ Route::get('reports')->name('reports')->uses('ReportsController')->middleware('a
 
 // 500 error
 Route::get('500', function () {
-    echo $fail;
+    throw new Exception('server internal error');
 });

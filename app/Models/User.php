@@ -13,6 +13,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Database\Query\Builder;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
@@ -67,11 +68,24 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->email === 'johndoe@example.com';
     }
 
+    /**
+     * Scope a query to only include popular users.
+     *
+     * @param  Builder  $query
+     * @return Builder
+     */
     public function scopeOrderByName($query)
     {
         $query->orderBy('last_name')->orderBy('first_name');
     }
 
+    /**
+     * Scope a query to only include popular users.
+     *
+     * @param  Builder  $query
+     * @param  string $role
+     * @return Builder
+     */
     public function scopeWhereRole($query, $role)
     {
         switch ($role) {
@@ -80,17 +94,23 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         }
     }
 
+    /**
+     * Scope a query to only include popular users.
+     *
+     * @param  Builder  $query
+     * @return Builder
+     */
     public function scopeFilter($query, array $filters)
     {
-        $query->when($filters['search'] ?? null, function ($query, $search) {
-            $query->where(function ($query) use ($search) {
+        $query->when($filters['search'] ?? null, function (Builder $query, string $search) {
+            $query->where(function (Builder $query) use ($search) {
                 $query->where('first_name', 'like', '%'.$search.'%')
                     ->orWhere('last_name', 'like', '%'.$search.'%')
                     ->orWhere('email', 'like', '%'.$search.'%');
             });
-        })->when($filters['role'] ?? null, function ($query, $role) {
+        })->when($filters['role'] ?? null, function (Builder $query, string $role) {
             $query->whereRole($role);
-        })->when($filters['trashed'] ?? null, function ($query, $trashed) {
+        })->when($filters['trashed'] ?? null, function (Builder $query, string $trashed) {
             if ($trashed === 'with') {
                 $query->withTrashed();
             } elseif ($trashed === 'only') {

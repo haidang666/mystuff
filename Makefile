@@ -34,11 +34,24 @@ serve:
 	@php artisan serve
 	@$(MAKE) note
 
-test:
+phptest:
 	@php ./vendor/bin/phpunit --testdox
 
-test-coverage:
+phptest-coverage:
 	@php ./vendor/bin/phpunit --coverage-html storage/logs/coverage --testdox
+
+phpstan:
+	@php ./vendor/bin/phpstan analyse --memory-limit=2G
+
+phpsalm:
+	@php ./vendor/bin/psalm
+
+phpstyle:
+	@$(MAKE) phpstan
+	@$(MAKE) phpsalm
+
+phpfix:
+	@php ./vendor/bin/php-cs-fixer fix --config .php_cs
 
 note:
 	@echo "\n======================================== [NOTE] ========================================"

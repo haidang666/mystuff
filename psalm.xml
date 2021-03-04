@@ -1,15 +1,17 @@
 <?xml version="1.0"?>
 <psalm
-    name="Example Psalm config with recommended defaults"
-    useDocblockTypes="true"
-    totallyTyped="false"
+    name="Laravel 8"
+    resolveFromConfigFile="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
 >
     <projectFiles>
+        <directory name="app"/>
         <directory name="database/seeders"/>
         <directory name="database/migrations"/>
-        <directory name="app"/>
-        <directory name="tests"/>
-        <directory name="routes"/>
+        <!-- <directory name="tests"/> -->
+        <!-- <directory name="routes"/> -->
         <ignoreFiles>
             <directory name="vendor"/>
         </ignoreFiles>
@@ -101,4 +103,4 @@
         <UndefinedMagicPropertyFetch errorLevel="suppress"/>
         <InvalidPropertyAssignmentValue errorLevel="suppress"/>
     </issueHandlers>
-<plugins><pluginClass xmlns="https://getpsalm.org/schema/config" class="Psalm\LaravelPlugin\Plugin"/></plugins></psalm>
+<plugins><pluginClass class="Psalm\LaravelPlugin\Plugin"/></plugins></psalm>

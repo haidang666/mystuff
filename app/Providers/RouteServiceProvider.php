@@ -12,12 +12,14 @@ class RouteServiceProvider extends ServiceProvider
      *
      * In addition, it is set as the URL generator's root namespace.
      *
-     * @var string
+     * @var null|string
      */
     protected $namespace = 'App\Http\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.
+     * 
+     * @return void
      */
     public function boot()
     {
@@ -28,6 +30,8 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Define the routes for the application.
+     * 
+     * @return void
      */
     public function map()
     {
@@ -42,6 +46,8 @@ class RouteServiceProvider extends ServiceProvider
      * Define the "web" routes for the application.
      *
      * These routes all receive session state, CSRF protection, etc.
+     * 
+     * @return void
      */
     protected function mapWebRoutes()
     {
@@ -54,6 +60,8 @@ class RouteServiceProvider extends ServiceProvider
      * Define the "api" routes for the application.
      *
      * These routes are typically stateless.
+     * 
+     * @return void
      */
     protected function mapApiRoutes()
     {

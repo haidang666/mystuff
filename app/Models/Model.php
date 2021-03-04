@@ -16,7 +16,7 @@ abstract class Model extends Eloquent
         // return in_array(SoftDeletes::class, class_uses($this))
         //     ? $this->where($this->getRouteKeyName(), $value)->withTrashed()->first()
         //     : parent::resolveRouteBinding($value);
-        
+
         return parent::resolveRouteBinding($value, $field);
     }
 }
