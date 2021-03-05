@@ -2,14 +2,29 @@
 
 namespace Database\Seeders;
 
+use App\Models\Note;
 use App\Models\User;
+use Faker\Generator;
 use App\Models\Account;
 use App\Models\Contact;
 use App\Models\Organization;
 use Illuminate\Database\Seeder;
+use Illuminate\Container\Container;
 
 class DatabaseSeeder extends Seeder
 {
+    protected $faker;
+
+    public function __construct()
+    {
+        $this->faker = $this->withFaker();
+    }
+
+    protected function withFaker()
+    {
+        return Container::getInstance()->make(Generator::class);
+    }
+
     public function run()
     {
         $account = Account::create(['name' => 'Acme Corporation']);
@@ -38,5 +53,10 @@ class DatabaseSeeder extends Seeder
                     $contact->update(['organization_id' => $organizations->random()->id]);
                 });
         }
+
+        Note::factory()->count(5)->create();
+        Note::factory()->count(2)->create([
+            'deleted_at' => $this->faker->dateTimeBetween(),
+        ]);
     }
 }

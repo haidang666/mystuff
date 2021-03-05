@@ -17,4 +17,9 @@ class CreateAccountsTable extends Migration
             $table->timestamps();
         });
     }
+
+    public function down()
+    {
+        Schema::dropIfExists('accounts');
+    }
 }

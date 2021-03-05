@@ -28,4 +28,9 @@ class CreateContactsTable extends Migration
             $table->softDeletes();
         });
     }
+
+    public function down()
+    {
+        Schema::dropIfExists('contacts');
+    }
 }

@@ -26,4 +26,9 @@ class CreateOrganizationsTable extends Migration
             $table->softDeletes();
         });
     }
+
+    public function down()
+    {
+        Schema::dropIfExists('organizations');
+    }
 }

@@ -27,8 +27,9 @@ key:
 	@php artisan key:generate
 
 migrate:
-	@php artisan migrate:refresh
-	@php artisan db:seed
+#	@php artisan migrate:refresh
+	@php artisan migrate:fresh --seed
+#	@php artisan db:seed
 
 serve:
 	@php artisan serve
