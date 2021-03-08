@@ -29,6 +29,8 @@
     "react-helmet": "^5.2.1",
     "react-use": "^13.27.1",
     "resolve-url-loader": "^3.1.2",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^2.0.3",
     "tailwindcss": "^2.0.3"
   },
   "devDependencies": {

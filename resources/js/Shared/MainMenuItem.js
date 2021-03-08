@@ -2,6 +2,7 @@ import React from 'react';
 import { InertiaLink } from '@inertiajs/inertia-react';
 import classNames from 'classnames';
 import Icon from '@/Shared/Icon';
+import { Icon as IconX } from 'semantic-ui-react';
 
 export default ({ icon, link, text }) => {
   const isActive = route().current(link + '*');
@@ -15,12 +16,13 @@ export default ({ icon, link, text }) => {
     'text-white': isActive,
     'text-indigo-200 group-hover:text-white': !isActive
   });
-
+  console.log(isActive);
   return (
     <div className="mb-4">
       <InertiaLink href={route(link)} className="flex items-center group py-3">
         <Icon name={icon} className={iconClasses} />
         <div className={textClasses}>{text}</div>
+        <IconX name='sticky note' size='large' disabled={!isActive}/>
       </InertiaLink>
     </div>
   );

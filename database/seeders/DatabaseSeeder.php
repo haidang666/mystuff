@@ -13,6 +13,9 @@ use Illuminate\Container\Container;
 
 class DatabaseSeeder extends Seeder
 {
+    /**
+     * @var \Faker\Generator
+     */
     protected $faker;
 
     public function __construct()
