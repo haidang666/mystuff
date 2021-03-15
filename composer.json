@@ -1,6 +1,6 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
+    "name": "haidang666/mystuff",
+    "description": "The web app",
     "keywords": [
         "framework",
         "laravel"
@@ -35,6 +35,7 @@
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^5.0",
         "nunomaduro/larastan": "^0.6",
+        "nunomaduro/phpinsights": "^1.14",
         "phpstan/phpstan-deprecation-rules": "^0.12",
         "phpstan/phpstan-phpunit": "^0.12",
         "phpunit/phpunit": "^9.0",
