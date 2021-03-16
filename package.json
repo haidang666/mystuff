@@ -8,6 +8,7 @@
     "hot": "mix watch --hot",
     "prod": "npm run production",
     "production": "mix --production",
+    "lint": "eslint resources/js/**/**.js",
     "phptest": "vendor/bin/phpunit --testdox",
     "phpstan": "vendor/bin/phpstan analyse --memory-limit=2G",
     "phpslam": "vendor/bin/psalm",

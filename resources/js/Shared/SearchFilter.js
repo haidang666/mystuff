@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Inertia } from '@inertiajs/inertia';
 import { usePage } from '@inertiajs/inertia-react';
 import { usePrevious } from 'react-use';
@@ -62,7 +62,7 @@ export default () => {
             className="fixed inset-0 z-20 bg-black opacity-25"
           ></div>
           <div className="relative z-30 w-64 px-4 py-6 mt-2 bg-white rounded shadow-lg">
-            {filters.hasOwnProperty('role') && (
+            {Object.prototype.hasOwnProperty.call(filters, 'role') && (
               <SelectInput
                 className="mb-4"
                 label="Role"
@@ -106,7 +106,6 @@ export default () => {
           className="relative w-full px-6 py-3 rounded-r focus:outline-none focus:ring-2 focus:ring-indigo-400"
           autoComplete="off"
           type="text"
-          name="search"
           name="search"
           value={values.search}
           onChange={handleChange}

@@ -59,6 +59,13 @@ phpstyle:
 phpfix:
 	@php ./vendor/bin/php-cs-fixer fix --config .php_cs
 
+eslint:
+	@npm run lint
+
+code-style:
+	@$(MAKE) phpstyle
+	@$(MAKE) eslint
+
 note:
 	@echo "\n======================================== [NOTE] ========================================"
 	@echo "You're ready to go! Visit Ping CRM in your browser, and login with:					 "
@@ -70,7 +77,7 @@ bannar:
 	@echo " _____ _              _____ _____  __  __"
 	@echo "|  __ (_)            / ____|  __ \|  \/  |"
 	@echo "| |__) | _ __   __ _| |    | |__) | \  / |"
-	@echo "|  ___/ | '_ \ / _\` | |    |  _  /| |\/| |"
+	@echo "|  ___/ | '_ \ / _\`| |    |  _  /| |\/| |"
 	@echo "| |   | | | | | (_| | |____| | \ \| |  | |"
 	@echo "|_|   |_|_| |_|\__, |\_____|_|  \_\_|  |_|"
 	@echo "                __/ |"
