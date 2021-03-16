@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use League\Glide\Server;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Http\Resources\Json\JsonResource;
+use League\Glide\Server;
 
 class AppServiceProvider extends ServiceProvider
 {

@@ -47,10 +47,14 @@ phpstan:
 phpsalm:
 	@php ./vendor/bin/psalm
 
+phpinsights:
+	@php artisan insights --fix
+
 phpstyle:
 	@$(MAKE) phpstan
 	@$(MAKE) phpsalm
 	@$(MAKE) phpfix
+	@$(MAKE) phpinsights
 
 phpfix:
 	@php ./vendor/bin/php-cs-fixer fix --config .php_cs

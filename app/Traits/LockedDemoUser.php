@@ -6,7 +6,6 @@ use Illuminate\Validation\ValidationException;
 
 trait LockedDemoUser
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *

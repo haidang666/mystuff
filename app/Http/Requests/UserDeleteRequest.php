@@ -17,7 +17,7 @@ class UserDeleteRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            // empty comment
         ];
     }
 }

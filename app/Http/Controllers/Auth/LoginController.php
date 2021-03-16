@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Inertia\Inertia;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Inertia\Inertia;
 
 class LoginController extends Controller
 {

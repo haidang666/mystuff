@@ -20,34 +20,40 @@ Route::post('logout')->name('logout')->uses('Auth\LoginController@logout');
 Route::get('/')->name('dashboard')->uses('DashboardController')->middleware('auth');
 
 // Users
-Route::get('users')->name('users')->uses('UsersController@index')->middleware('remember', 'auth');
-Route::get('users/create')->name('users.create')->uses('UsersController@create')->middleware('auth');
-Route::post('users')->name('users.store')->uses('UsersController@store')->middleware('auth');
-Route::get('users/{user}/edit')->name('users.edit')->uses('UsersController@edit')->middleware('auth');
-Route::put('users/{user}')->name('users.update')->uses('UsersController@update')->middleware('auth');
-Route::delete('users/{user}')->name('users.destroy')->uses('UsersController@destroy')->middleware('auth');
-Route::put('users/{user}/restore')->name('users.restore')->uses('UsersController@restore')->middleware('auth');
+Route::middleware(['auth'])->prefix('users')->group(function () {
+    Route::get('')->name('users')->uses('UsersController@index')->middleware('remember');
+    Route::post('')->name('users.store')->uses('UsersController@store');
+    Route::get('create')->name('users.create')->uses('UsersController@create');
+    Route::get('{user}/edit')->name('users.edit')->uses('UsersController@edit');
+    Route::put('{user}')->name('users.update')->uses('UsersController@update');
+    Route::delete('{user}')->name('users.destroy')->uses('UsersController@destroy');
+    Route::put('{user}/restore')->name('users.restore')->uses('UsersController@restore');
+});
 
 // Images
 Route::get('/img/{path}', 'ImagesController@show')->where('path', '.*');
 
 // Organizations
-Route::get('organizations')->name('organizations')->uses('OrganizationsController@index')->middleware('remember', 'auth');
-Route::get('organizations/create')->name('organizations.create')->uses('OrganizationsController@create')->middleware('auth');
-Route::post('organizations')->name('organizations.store')->uses('OrganizationsController@store')->middleware('auth');
-Route::get('organizations/{organization}/edit')->name('organizations.edit')->uses('OrganizationsController@edit')->middleware('auth');
-Route::put('organizations/{organization}')->name('organizations.update')->uses('OrganizationsController@update')->middleware('auth');
-Route::delete('organizations/{organization}')->name('organizations.destroy')->uses('OrganizationsController@destroy')->middleware('auth');
-Route::put('organizations/{organization}/restore')->name('organizations.restore')->uses('OrganizationsController@restore')->middleware('auth');
+Route::middleware(['auth'])->prefix('organizations')->group(function () {
+    Route::get('')->name('organizations')->uses('OrganizationsController@index')->middleware('remember');
+    Route::post('')->name('organizations.store')->uses('OrganizationsController@store');
+    Route::get('create')->name('organizations.create')->uses('OrganizationsController@create');
+    Route::get('{organization}/edit')->name('organizations.edit')->uses('OrganizationsController@edit');
+    Route::put('{organization}')->name('organizations.update')->uses('OrganizationsController@update');
+    Route::delete('{organization}')->name('organizations.destroy')->uses('OrganizationsController@destroy');
+    Route::put('{organization}/restore')->name('organizations.restore')->uses('OrganizationsController@restore');
+});
 
 // Contacts
-Route::get('contacts')->name('contacts')->uses('ContactsController@index')->middleware('remember', 'auth');
-Route::get('contacts/create')->name('contacts.create')->uses('ContactsController@create')->middleware('auth');
-Route::post('contacts')->name('contacts.store')->uses('ContactsController@store')->middleware('auth');
-Route::get('contacts/{contact}/edit')->name('contacts.edit')->uses('ContactsController@edit')->middleware('auth');
-Route::put('contacts/{contact}')->name('contacts.update')->uses('ContactsController@update')->middleware('auth');
-Route::delete('contacts/{contact}')->name('contacts.destroy')->uses('ContactsController@destroy')->middleware('auth');
-Route::put('contacts/{contact}/restore')->name('contacts.restore')->uses('ContactsController@restore')->middleware('auth');
+Route::middleware(['auth'])->prefix('contacts')->group(function () {
+    Route::get('')->name('contacts')->uses('ContactsController@index')->middleware('remember');
+    Route::post('')->name('contacts.store')->uses('ContactsController@store');
+    Route::get('create')->name('contacts.create')->uses('ContactsController@create');
+    Route::get('{contact}/edit')->name('contacts.edit')->uses('ContactsController@edit');
+    Route::put('{contact}')->name('contacts.update')->uses('ContactsController@update');
+    Route::delete('{contact}')->name('contacts.destroy')->uses('ContactsController@destroy');
+    Route::put('{contact}/restore')->name('contacts.restore')->uses('ContactsController@restore');
+});
 
 // Reports
 Route::get('reports')->name('reports')->uses('ReportsController')->middleware('auth');

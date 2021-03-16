@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
-use App\Models\Organization;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Redirect;
-use App\Http\Resources\OrganizationResource;
-use App\Http\Resources\OrganizationCollection;
 use App\Http\Requests\OrganizationStoreRequest;
 use App\Http\Requests\OrganizationUpdateRequest;
+use App\Http\Resources\OrganizationCollection;
+use App\Http\Resources\OrganizationResource;
+use App\Models\Organization;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
+use Inertia\Inertia;
 
 class OrganizationsController extends Controller
 {

@@ -18,7 +18,7 @@
     "@inertiajs/inertia-react": "^0.5.4",
     "@inertiajs/progress": "^0.2.4",
     "@sentry/browser": "^5.30.0",
-    "autoprefixer": "^10.2.4",
+    "autoprefixer": "^10.2.5",
     "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "laravel-mix": "^6.0.13",
@@ -40,7 +40,7 @@
     "cross-env": "^6.0.3",
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.22.0",
-    "postcss": "^8.2.6",
+    "postcss": "^8.2.8",
     "react-refresh": "^0.9.0"
   }
 }

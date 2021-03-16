@@ -2,10 +2,10 @@
 
 namespace App\Exceptions;
 
-use Throwable;
-use Inertia\Inertia;
-use Illuminate\Support\Facades\App;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\App;
+use Inertia\Inertia;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -15,13 +15,13 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        //
+        // empty comment
     ];
 
     /**
      * A list of the inputs that are never flashed for validation exceptions.
      *
-     * @var string[]
+     * @var array<string>
      */
     protected $dontFlash = [
         'password',
@@ -46,15 +46,16 @@ class Handler extends ExceptionHandler
      * Render an exception into an HTTP response.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $e
+     * @param  \Exception  $err
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function render($request, Throwable $e)
+    public function render($request, Throwable $err)
     {
-        $response = parent::render($request, $e);
+        $response = parent::render($request, $err);
 
         if (
-            (App::environment('production'))
+            App::environment('production')
             && $request->header('X-Inertia')
             && in_array($response->getStatusCode(), [500, 503, 404, 403])
         ) {
