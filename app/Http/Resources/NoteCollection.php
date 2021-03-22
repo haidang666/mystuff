@@ -19,7 +19,6 @@ class NoteCollection extends ResourceCollection
             'id',
             'content',
             'create_at',
-            'deleted_at',
             'is_marked'
         );
     }

@@ -55,6 +55,11 @@ Route::middleware(['auth'])->prefix('contacts')->group(function () {
     Route::put('{contact}/restore')->name('contacts.restore')->uses('ContactsController@restore');
 });
 
+// Notes
+Route::middleware(['auth'])->prefix('notes')->group(function () {
+    Route::get('')->name('notes')->uses('NotesController@index')->middleware('remember');
+});
+
 // Reports
 Route::get('reports')->name('reports')->uses('ReportsController')->middleware('auth');
 

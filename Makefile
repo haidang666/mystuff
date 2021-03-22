@@ -83,3 +83,9 @@ bannar:
 	@echo "                __/ |"
 	@echo "               |___/"
 	@echo "\n"
+
+ui:
+	@npm run hot
+
+server:
+	@php artisan serve

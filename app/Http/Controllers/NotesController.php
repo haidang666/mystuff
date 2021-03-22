@@ -7,7 +7,7 @@ use App\Models\Note;
 use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 
-class NoteController extends Controller
+class NotesController extends Controller
 {
     public function index()
     {
