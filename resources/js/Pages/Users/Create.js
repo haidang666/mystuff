@@ -1,5 +1,4 @@
 import React from 'react';
-import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, useForm } from '@inertiajs/inertia-react';
 import Layout from '@/Shared/Layout';
 import LoadingButton from '@/Shared/LoadingButton';
@@ -108,6 +107,6 @@ const Create = () => {
   );
 };
 
-Create.layout = page => <Layout title="Create User" children={page} />;
+Create.layout = page => <Layout title="Create User" >{page}</Layout>;
 
 export default Create;

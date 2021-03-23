@@ -18,7 +18,7 @@ class NoteCollection extends ResourceCollection
         return $this->collection->map->only(
             'id',
             'content',
-            'create_at',
+            'created_at',
             'is_marked'
         );
     }

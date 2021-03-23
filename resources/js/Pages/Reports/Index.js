@@ -9,6 +9,6 @@ const Index = () => {
   );
 };
 
-Index.layout = page => <Layout title="Reports" children={page} />;
+Index.layout = page => <Layout title="Reports" >{page}</Layout>;
 
 export default Index;
