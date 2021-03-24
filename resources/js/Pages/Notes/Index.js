@@ -21,8 +21,8 @@ const Index = () => {
               <p className="font-bold text-xl md:text-2xl">{new Date(note.created_at).toDateString()}</p>
               <p className="text-gray-700 md:text-lg">{note.content}</p>
 
-              <button className="bg-red-500 rounded-full flex items-center justify-center" type="button" style={{ transition: "all .15s ease" }}>
-                <Icon name='trash alternate outline'/>
+              <button className="bg-red-500 p-1.5 rounded flex items-center justify-center focus:outline-none" type="button" style={{ transition: "all .15s ease" }}>
+                <Icon name='trash alternate outline' style={{margin: 0}}/>
               </button>
             </div>
           </div>
@@ -39,7 +39,7 @@ const Index = () => {
         <SearchFilter />
         <InertiaLink
           className="btn-indigo focus:outline-none"
-          href={route('contacts.create')}
+          href={route('notes.create')}
         >
           <span>Create</span>
           <span className="hidden md:inline"> Notes</span>

@@ -58,6 +58,7 @@ Route::middleware(['auth'])->prefix('contacts')->group(function () {
 // Notes
 Route::middleware(['auth'])->prefix('notes')->group(function () {
     Route::get('')->name('notes')->uses('NotesController@index')->middleware('remember');
+    Route::get('create')->name('notes.create')->uses('NotesController@create');
 });
 
 // Reports
