@@ -16,7 +16,8 @@ class CreateNotesTable extends Migration
             $table->timestamps();
             $table->text('content');
             $table->softDeletes();
-            $table->boolean('is_marked');
+            $table->boolean('is_marked')->default(false);
+            $table->integer('user_id')->index();
         });
     }
 

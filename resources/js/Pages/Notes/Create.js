@@ -38,7 +38,7 @@ const Create = () => {
               value={data.content}
               onChange={e => setData('content', e.target.value)}
               error={errors.content && {
-                content: 'Please enter a valid email address',
+                content: errors.content,
                 pointing: 'below',
               }}
             />

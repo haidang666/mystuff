@@ -59,6 +59,8 @@ Route::middleware(['auth'])->prefix('contacts')->group(function () {
 Route::middleware(['auth'])->prefix('notes')->group(function () {
     Route::get('')->name('notes')->uses('NotesController@index')->middleware('remember');
     Route::get('create')->name('notes.create')->uses('NotesController@create');
+    Route::post('')->name('notes.store')->uses('NotesController@store');
+    Route::delete('{note}')->name('notes.destroy')->uses('NotesController@destroy');
 });
 
 // Reports

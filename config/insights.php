@@ -91,8 +91,12 @@ return [
         ],
         \PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineLengthSniff::class => [
             'lineLimit' => 120,
-            'absoluteLineLimit' => 160
-        ]
+            'absoluteLineLimit' => 160,
+        ],
+        \ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff::class => [
+            'minLength' => 3,
+            'allowedShortNames' => ['i', 'id', 'e'],
+        ],
     ],
 
     /*
