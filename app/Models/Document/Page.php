@@ -1,17 +1,20 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Document;
 
+use App\Models\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Note extends Model
+class Page extends Model
 {
     use SoftDeletes, HasFactory;
 
-    public function user(): BelongsTo
+    protected $table = 'document_pages';
+
+    public function document(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Document::class);
     }
 }

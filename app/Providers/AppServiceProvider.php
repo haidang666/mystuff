@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
 
     protected function registerGlide()
     {
-        $this->app->bind(Server::class, function ($app) {
+        $this->app->bind(Server::class, function () {
             return Server::create([
                 'source' => Storage::getDriver(),
                 'cache' => Storage::getDriver(),
