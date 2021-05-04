@@ -11,12 +11,12 @@ class CreateDocumentPageTable extends Migration
      */
     public function up()
     {
-        Schema::create('document_page', function (Blueprint $table) {
+        Schema::create('document_pages', function (Blueprint $table) {
             $table->id();
             $table->integer('document_id')->index();
             $table->string('name', 100)->nullable();
             $table->string('photo_url')->nullable();
-            $table->text('text');
+            $table->text('text')->nullable();
             $table->integer('position');
             $table->timestamps();
         });
@@ -27,6 +27,6 @@ class CreateDocumentPageTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('document_page');
+        Schema::dropIfExists('document_pages');
     }
 }

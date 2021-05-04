@@ -63,6 +63,14 @@ Route::middleware(['auth'])->prefix('notes')->group(function () {
     Route::delete('{note}')->name('notes.destroy')->uses('NotesController@destroy');
 });
 
+// Documents
+Route::middleware(['auth'])->prefix('documents')->group(function () {
+    Route::get('')->name('documents')->uses('DocumentsController@index')->middleware('remember');
+    Route::get('create')->name('documents.create')->uses('DocumentsController@create');
+    Route::post('')->name('documents.store')->uses('DocumentsController@store');
+    Route::delete('{note}')->name('documents.destroy')->uses('DocumentsController@destroy');
+});
+
 // Reports
 Route::get('reports')->name('reports')->uses('ReportsController')->middleware('auth');
 

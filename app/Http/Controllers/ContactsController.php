@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ContactStoreRequest;
-use App\Http\Requests\ContactUpdateRequest;
-use App\Http\Resources\ContactCollection;
-use App\Http\Resources\ContactResource;
-use App\Http\Resources\UserOrganizationCollection;
+use Inertia\Inertia;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
+use App\Http\Resources\ContactResource;
 use Illuminate\Support\Facades\Request;
-use Inertia\Inertia;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Resources\ContactCollection;
+use App\Http\Requests\ContactStoreRequest;
+use App\Http\Requests\ContactUpdateRequest;
+use App\Http\Resources\UserOrganizationCollection;
 
 class ContactsController extends Controller
 {

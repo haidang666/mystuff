@@ -9,6 +9,7 @@ export default ({ className }) => {
       <MainMenuItem text="Contacts" link="contacts" icon="address book" />
       <MainMenuItem text="Reports" link="reports" icon="print" />
       <MainMenuItem text="Notes" link="notes" icon="sticky note" />
+      <MainMenuItem text="Documents" link="documents" icon="file alternate" />
     </div>
   );
 };

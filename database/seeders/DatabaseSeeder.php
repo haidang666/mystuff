@@ -8,8 +8,11 @@ use Faker\Generator;
 use App\Models\Account;
 use App\Models\Contact;
 use App\Models\Organization;
+use App\Models\Document\Page;
 use Illuminate\Database\Seeder;
+use App\Models\Document\Document;
 use Illuminate\Container\Container;
+use App\Models\Document\Group as DocumentGroup;
 
 class DatabaseSeeder extends Seeder
 {
@@ -57,6 +60,30 @@ class DatabaseSeeder extends Seeder
         Note::factory()->count(2)->create([
             'deleted_at' => $this->faker->dateTimeBetween(),
             'user_id' => $user->id,
+        ]);
+
+        $this->seedDocuments($user);
+    }
+
+    public function seedDocuments(User $user)
+    {
+        DocumentGroup::factory()->count(2)->create([
+            'user_id' => $user->id,
+        ]);
+
+        Document::factory()->count(2)->create([
+            'group_id' => 1,
+            'user_id' => $user->id,
+        ]);
+
+        Page::factory()->create([
+            'document_id' => 1,
+            'position' => 0,
+        ]);
+
+        Page::factory()->create([
+            'document_id' => 1,
+            'position' => 1,
         ]);
     }
 }

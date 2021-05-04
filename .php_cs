@@ -14,7 +14,10 @@ return PhpCsFixer\Config::create()
     ->setRules([
         '@PSR2' => true,
         'array_syntax' => ['syntax' => 'short'],
-        'ordered_imports' => ['sortAlgorithm' => 'length'],
+        'ordered_imports' => [
+            'imports_order' => ['class', 'const', 'function'],
+            'sortAlgorithm' => 'length'
+        ],
         'single_quote' => true,
         'phpdoc_summary' => true,
         'phpdoc_add_missing_param_annotation' => true,

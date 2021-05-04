@@ -26,10 +26,11 @@ npm:
 key:
 	@php artisan key:generate
 
-migrate:
-#	@php artisan migrate:refresh
+db-seed:
 	@php artisan migrate:fresh --seed
-#	@php artisan db:seed
+
+db-migrate:
+	@php artisan migrate
 
 serve:
 	@php artisan serve
@@ -74,7 +75,7 @@ note:
 	@echo "========================================================================================\n"
 
 bannar:
-	@echo " _____ _              _____ _____  __  __"
+	@echo " _____ _              _____ _____  __  __ "
 	@echo "|  __ (_)            / ____|  __ \|  \/  |"
 	@echo "| |__) | _ __   __ _| |    | |__) | \  / |"
 	@echo "|  ___/ | '_ \ / _\`| |    |  _  /| |\/| |"

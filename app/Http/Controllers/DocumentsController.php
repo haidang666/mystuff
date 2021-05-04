@@ -10,18 +10,16 @@ use App\Http\Requests\NoteStoreRequest;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
 
-class NotesController extends Controller
+class DocumentsController extends Controller
 {
     public function index()
     {
         return Inertia::render('Notes/Index', [
-            'filters' => Request::all('search', 'trashed'),
+            'filters' => Request::all('search'),
             'notes' => new NoteCollection(
                 Auth::user()->notes()
                     ->orderBy('created_at', 'desc')
-                    ->filter(Request::only('search', 'trashed'))
                     ->paginate()
-                    ->appends(Request::all())
             ),
         ]);
     }
