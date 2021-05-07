@@ -100,7 +100,7 @@ return [
         \PhpCsFixer\Fixer\Import\OrderedImportsFixer::class => [
             'imports_order' => ['class', 'const', 'function'],
             'sort_algorithm' => 'length', // possible values ['alpha', 'length', 'none']
-        ]
+        ],
     ],
 
     /*

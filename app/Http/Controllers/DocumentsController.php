@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Note;
 use Inertia\Inertia;
+use App\Models\Document\Document;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Resources\NoteCollection;
 use App\Http\Requests\NoteStoreRequest;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Resources\DocumentCollection;
 
 class DocumentsController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Notes/Index', [
+        return Inertia::render('Documents/Index', [
             'filters' => Request::all('search'),
-            'notes' => new NoteCollection(
-                Auth::user()->notes()
+            'documents' => new DocumentCollection(
+                Auth::user()->documents()
+                    ->with('group')
                     ->orderBy('created_at', 'desc')
                     ->paginate()
             ),
@@ -38,10 +39,8 @@ class DocumentsController extends Controller
         return Redirect::route('notes')->with('success', 'Note created.');
     }
 
-    public function destroy(Note $note)
+    public function destroy(Document $note)
     {
-        $note->delete();
-
-        return Redirect::back()->with('success', 'Note deleted.');
+        return Redirect::back()->with('success', 'Document deleted.');
     }
 }

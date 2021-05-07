@@ -8,16 +8,16 @@ import { Icon, Confirm } from 'semantic-ui-react';
 
 const Index = () => {
   const [openDeleteConfirm, setOpenDeleteConfirm] = useState(false);
-  const [currentNote, setCurrentNote] = useState({})
+  const [currentContext, setCurrentContext] = useState({});
 
-  const { notes } = usePage().props;
+  const { documents } = usePage().props;
   const {
     data,
     meta: { links }
-  } = notes;
- 
+  } = documents;
+
   const handleConfirmDelete = () => {
-    Inertia.delete(route('notes.destroy', currentNote.id));
+    Inertia.delete(route('documents.destroy', currentContext.id));
     setOpenDeleteConfirm(false);
   };
 
@@ -25,48 +25,99 @@ const Index = () => {
     setOpenDeleteConfirm(false);
   };
 
-  const handleClickDelete = (note) => {
-    setCurrentNote(note);
+  const handleClickDelete = context => {
+    setCurrentContext(context);
     setOpenDeleteConfirm(true);
-  };
-
-  const renderNote = (note, index) => {
-    return (
-      <div className="max-w-md md:max-w-2xl" key={index}>
-        <div className="bg-yellow-200 rounded-lg overflow-hidden md:flex">
-          <div>
-            <div className="p-4 md:p-5">
-              <p className="font-bold text-xl md:text-2xl">{new Date(note.created_at).toDateString()}</p>
-              <p className="text-gray-700 md:text-lg">{note.content}</p>
-
-              <button className="bg-red-500 p-1.5 rounded flex items-center justify-center focus:outline-none" 
-                type="button" 
-                style={{ transition: "all .15s ease" }}
-                onClick={() => handleClickDelete(note)}
-              >
-                <Icon name='trash alternate outline' style={{margin: 0}}/>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
   };
 
   const renderDeleteConfirm = () => {
     return (
       <Confirm
         open={openDeleteConfirm}
-        content='Are you sure you want to delete this?'
+        content="Are you sure you want to delete this?"
         onConfirm={handleConfirmDelete}
         onCancel={handleCancelDelete}
       />
     );
   };
 
+  function renderTable() {
+    function renderHead() {
+      return (
+        <thead>
+          <tr className="font-bold text-left">
+            <th className="px-6 pt-5 pb-4">Name</th>
+            <th className="px-6 pt-5 pb-4">Group</th>
+            <th className="px-6 pt-5 pb-4">Action</th>
+          </tr>
+        </thead>
+      );
+    }
+
+    function renderRow(item, index) {
+      return (
+        <tr key={index} className="hover:bg-gray-100 focus-within:bg-gray-100">
+          <td className="border-t">
+            <InertiaLink
+              tabIndex="1"
+              href={route('contacts.edit', item.id)}
+              className="flex items-center px-6 py-4 focus:text-indigo-700 focus:outline-none"
+            >
+              {item.name}
+              {item.deleted_at && (
+                <Icon
+                  name="trash"
+                  className="flex-shrink-0 w-3 h-3 ml-2 text-gray-400 fill-current"
+                />
+              )}
+            </InertiaLink>
+          </td>
+          <td className="border-t">
+            <InertiaLink
+              tabIndex="-1"
+              className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
+              href={route('contacts.edit', item.id)}
+            >
+              {item.group.name}
+            </InertiaLink>
+          </td>
+          <td className="border-t">
+            <InertiaLink
+              tabIndex="-1"
+              href={route('contacts.edit', item.id)}
+              className="flex items-center px-4 focus:outline-none"
+            >
+              <Icon
+                name="trash"
+                className="block w-6 h-6 text-gray-400 fill-current"
+              />
+            </InertiaLink>
+          </td>
+        </tr>
+      );
+    }
+
+    return (
+      <table className="w-full whitespace-nowrap">
+        {renderHead()}
+        <tbody>
+          {data.map(renderRow)}
+          {data.length === 0 && (
+            <tr>
+              <td className="px-6 py-4 border-t" colSpan="3">
+                Empty data.
+                <button onClick={handleClickDelete}>A</button>
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    );
+  }
+
   return (
     <div>
-      <h1 className="mb-8 text-3xl font-bold">Notes</h1>
+      <h1 className="mb-8 text-3xl font-bold">Documents</h1>
 
       <div className="flex items-center justify-between mb-6">
         <SearchFilter />
@@ -75,19 +126,17 @@ const Index = () => {
           href={route('notes.create')}
         >
           <span>Create</span>
-          <span className="hidden md:inline"> Notes</span>
+          <span className="hidden md:inline"> Document</span>
         </InertiaLink>
       </div>
 
-      <div className="overflow-x-auto bg-white">
-        <div className="grid gap-3 grid-cols-1 md:grid-cols-5">
-          { data.map(renderNote) }
-        </div>
+      <div className="overflow-x-auto bg-white rounded shadow">
+        {renderTable()}
       </div>
 
       <Pagination links={links} />
 
-      { renderDeleteConfirm() }
+      {renderDeleteConfirm()}
     </div>
   );
 };

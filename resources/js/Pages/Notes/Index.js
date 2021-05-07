@@ -8,14 +8,14 @@ import { Icon, Confirm } from 'semantic-ui-react';
 
 const Index = () => {
   const [openDeleteConfirm, setOpenDeleteConfirm] = useState(false);
-  const [currentNote, setCurrentNote] = useState({})
+  const [currentNote, setCurrentNote] = useState({});
 
   const { notes } = usePage().props;
   const {
     data,
     meta: { links }
   } = notes;
- 
+
   const handleConfirmDelete = () => {
     Inertia.delete(route('notes.destroy', currentNote.id));
     setOpenDeleteConfirm(false);
@@ -25,7 +25,7 @@ const Index = () => {
     setOpenDeleteConfirm(false);
   };
 
-  const handleClickDelete = (note) => {
+  const handleClickDelete = note => {
     setCurrentNote(note);
     setOpenDeleteConfirm(true);
   };
@@ -36,15 +36,18 @@ const Index = () => {
         <div className="bg-yellow-200 rounded-lg overflow-hidden md:flex">
           <div>
             <div className="p-4 md:p-5">
-              <p className="font-bold text-xl md:text-2xl">{new Date(note.created_at).toDateString()}</p>
+              <p className="font-bold text-xl md:text-2xl">
+                {new Date(note.created_at).toDateString()}
+              </p>
               <p className="text-gray-700 md:text-lg">{note.content}</p>
 
-              <button className="bg-red-500 p-1.5 rounded flex items-center justify-center focus:outline-none" 
-                type="button" 
-                style={{ transition: "all .15s ease" }}
+              <button
+                className="bg-red-500 p-1.5 rounded flex items-center justify-center focus:outline-none"
+                type="button"
+                style={{ transition: 'all .15s ease' }}
                 onClick={() => handleClickDelete(note)}
               >
-                <Icon name='trash alternate outline' style={{margin: 0}}/>
+                <Icon name="trash alternate outline" style={{ margin: 0 }} />
               </button>
             </div>
           </div>
@@ -57,7 +60,7 @@ const Index = () => {
     return (
       <Confirm
         open={openDeleteConfirm}
-        content='Are you sure you want to delete this?'
+        content="Are you sure you want to delete this?"
         onConfirm={handleConfirmDelete}
         onCancel={handleCancelDelete}
       />
@@ -81,13 +84,13 @@ const Index = () => {
 
       <div className="overflow-x-auto bg-white">
         <div className="grid gap-3 grid-cols-1 md:grid-cols-5">
-          { data.map(renderNote) }
+          {data.map(renderNote)}
         </div>
       </div>
 
       <Pagination links={links} />
 
-      { renderDeleteConfirm() }
+      {renderDeleteConfirm()}
     </div>
   );
 };

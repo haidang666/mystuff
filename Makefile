@@ -60,12 +60,12 @@ phpstyle:
 phpfix:
 	@php ./vendor/bin/php-cs-fixer fix --config .php_cs
 
-eslint:
+lint:
 	@npm run lint
 
 code-style:
 	@$(MAKE) phpstyle
-	@$(MAKE) eslint
+	@$(MAKE) lint
 
 note:
 	@echo "\n======================================== [NOTE] ========================================"
@@ -74,7 +74,7 @@ note:
 	@echo "[*] Password: secret"
 	@echo "========================================================================================\n"
 
-bannar:
+banner:
 	@echo " _____ _              _____ _____  __  __ "
 	@echo "|  __ (_)            / ____|  __ \|  \/  |"
 	@echo "| |__) | _ __   __ _| |    | |__) | \  / |"
@@ -86,7 +86,7 @@ bannar:
 	@echo "\n"
 
 ui:
-	@npm run hot
+	@npm run dev
 
 server:
 	@php artisan serve

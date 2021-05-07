@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use League\Glide\Server;
+use App\Models\Document\Document;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
@@ -123,5 +124,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function notes(): HasMany
     {
         return $this->hasMany(Note::class);
+    }
+
+    public function documents(): HasMany
+    {
+        return $this->hasMany(Document::class);
     }
 }

@@ -7,7 +7,7 @@
     "watch-poll": "mix watch -- --watch-options-poll=1000",
     "prod": "npm run production",
     "production": "mix --production",
-    "lint": "eslint resources/js",
+    "lint": "prettier --write 'resources/js/**/**.js' && eslint --fix 'resources/js/**/**.js'",
     "phptest": "vendor/bin/phpunit --testdox",
     "phpstan": "vendor/bin/phpstan analyse --memory-limit=2G",
     "phpslam": "vendor/bin/psalm",
@@ -38,9 +38,12 @@
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.0-beta.1",
     "babel-eslint": "^10.1.0",
     "cross-env": "^6.0.3",
-    "eslint": "^6.8.0",
+    "eslint": "^7.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.22.0",
     "postcss": "^8.2.8",
+    "prettier": "^2.2.1",
     "react-refresh": "^0.9.0"
   }
 }

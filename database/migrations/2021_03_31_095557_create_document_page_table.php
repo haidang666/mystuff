@@ -18,6 +18,7 @@ class CreateDocumentPageTable extends Migration
             $table->string('photo_url')->nullable();
             $table->text('text')->nullable();
             $table->integer('position');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

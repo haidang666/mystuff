@@ -112,6 +112,6 @@ const Index = () => {
   );
 };
 
-Index.layout = page => <Layout title="Contacts" >{page}</Layout>;
+Index.layout = page => <Layout title="Contacts">{page}</Layout>;
 
 export default Index;

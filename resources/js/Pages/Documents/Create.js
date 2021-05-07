@@ -13,7 +13,7 @@ const Create = () => {
   const handleSubmit = e => {
     e.preventDefault();
     post(route('notes.store'));
-  }
+  };
 
   return (
     <div>
@@ -31,16 +31,18 @@ const Create = () => {
         <Form onSubmit={handleSubmit}>
           <div className="p-8 -mb-3 -mr-3">
             <label className="form-label text-lg">Content</label>
-            <Form.TextArea 
+            <Form.TextArea
               className="w-full"
-              placeholder='Tell us more about you...' 
+              placeholder="Tell us more about you..."
               style={{ minHeight: 150 }}
               value={data.content}
               onChange={e => setData('content', e.target.value)}
-              error={errors.content && {
-                content: errors.content,
-                pointing: 'below',
-              }}
+              error={
+                errors.content && {
+                  content: errors.content,
+                  pointing: 'below'
+                }
+              }
             />
           </div>
 
@@ -52,13 +54,13 @@ const Create = () => {
             >
               Create Note
             </LoadingButton>
-          </div>    
+          </div>
         </Form>
       </div>
     </div>
   );
 };
 
-Create.layout = page => <Layout title="Create Note" >{page}</Layout>;
+Create.layout = page => <Layout title="Create Note">{page}</Layout>;
 
 export default Create;

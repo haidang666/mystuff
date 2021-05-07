@@ -126,6 +126,6 @@ const Create = () => {
   );
 };
 
-Create.layout = page => <Layout title="Create Organization" >{page}</Layout>;
+Create.layout = page => <Layout title="Create Organization">{page}</Layout>;
 
 export default Create;

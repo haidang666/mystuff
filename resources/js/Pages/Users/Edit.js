@@ -143,6 +143,6 @@ const Edit = () => {
   );
 };
 
-Edit.layout = page => <Layout >{page}</Layout>;
+Edit.layout = page => <Layout>{page}</Layout>;
 
 export default Edit;

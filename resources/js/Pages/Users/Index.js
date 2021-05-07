@@ -110,6 +110,6 @@ const Index = () => {
   );
 };
 
-Index.layout = page => <Layout title="Users" >{page}</Layout>;
+Index.layout = page => <Layout title="Users">{page}</Layout>;
 
 export default Index;

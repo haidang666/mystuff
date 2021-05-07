@@ -14,8 +14,9 @@ class CreateDocumentGroupsTable extends Migration
         Schema::create('document_groups', function (Blueprint $table) {
             $table->id();
             $table->string('name', 200);
-            $table->timestamps();
             $table->integer('user_id')->index();
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

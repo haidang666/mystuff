@@ -38,6 +38,6 @@ const Dashboard = () => {
 
 // Persistent layout
 // Docs: https://inertiajs.com/pages#persistent-layouts
-Dashboard.layout = page => <Layout title="Dashboard" >{page}</Layout>;
+Dashboard.layout = page => <Layout title="Dashboard">{page}</Layout>;
 
 export default Dashboard;
