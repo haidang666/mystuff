@@ -10,18 +10,18 @@ setup:
 	@php -r "file_exists('.env') || copy('.env.example', '.env');"
 	@rm -fr database/database.sqlite
 	@touch database/database.sqlite
+	@$(MAKE) install
+	@$(MAKE) key
 
 install:
 	@$(MAKE) composer
 	@$(MAKE) npm
-	@$(MAKE) key
 
 composer:
 	@composer install
 
 npm:
-	@npm ci
-	@npm run dev
+	@npm install
 
 key:
 	@php artisan key:generate
