@@ -9,7 +9,6 @@ import { Icon, Confirm } from 'semantic-ui-react';
 const Index = () => {
   const [openDeleteConfirm, setOpenDeleteConfirm] = useState(false);
   const [currentContext, setCurrentContext] = useState({});
-
   const { documents } = usePage().props;
   const {
     data,

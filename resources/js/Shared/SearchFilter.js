@@ -47,7 +47,9 @@ export default () => {
       [key]: value
     }));
 
-    if (opened) setOpened(false);
+    if (opened) {
+      setOpened(false);
+    }
   }
 
   return (

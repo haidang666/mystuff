@@ -4,11 +4,20 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:prettier/recommended'
   ],
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
+  plugins: [
+    '@babel'
+  ],
   parserOptions: {
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true
+    },
+    requireConfigFile: false,
+    babelOptions: {
+      plugins: [
+        '@babel/plugin-proposal-class-properties'
+      ]
     }
   },
   settings: {
@@ -31,7 +40,7 @@ module.exports = {
     curly: 'error',
     'dot-location': ['error', 'property'],
     'dot-notation': 'error',
-    'no-alert': 'error',
+    'no-alert': 'warn',
     'object-shorthand': ['error', 'always'],
     'no-console': ['error', { allow: ['warn', 'error'] }],
 

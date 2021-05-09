@@ -95,7 +95,7 @@ export default ({ name, className }) => {
     );
   }
 
-  if (name == 'printer') {
+  if (name === 'printer') {
     return (
       <svg
         className={className}
