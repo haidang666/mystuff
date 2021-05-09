@@ -26,7 +26,7 @@ mix
     require('autoprefixer')
   ])
   .options({
-    hmrOptions: hmrOptions
+    hmrOptions
   })
   .webpackConfig({
     output: { chunkFilename: 'js/[name].js?id=[chunkhash]' },
@@ -35,7 +35,7 @@ mix
         '@': path.resolve('resources/js')
       }
     },
-    devServer: devServer
+    devServer
   })
   .version()
   .sourceMaps();
