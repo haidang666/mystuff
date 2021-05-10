@@ -15,6 +15,7 @@ class CreateDocumentsTable extends Migration
             $table->id();
             $table->integer('group_id')->nullable()->index();
             $table->string('name', 200);
+            $table->string('note', 300)->nullable();
             $table->integer('user_id')->index();
             $table->softDeletes();
             $table->timestamps();

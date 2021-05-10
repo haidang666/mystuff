@@ -77,7 +77,7 @@ const Index = () => {
               className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
               href={route('contacts.edit', item.id)}
             >
-              {item.group.name}
+              {item.group && item.group.name}
             </InertiaLink>
           </td>
           <td className="border-t">
@@ -122,7 +122,7 @@ const Index = () => {
         <SearchFilter />
         <InertiaLink
           className="btn-indigo focus:outline-none"
-          href={route('notes.create')}
+          href={route('documents.create')}
         >
           <span>Create</span>
           <span className="hidden md:inline"> Document</span>
