@@ -5,9 +5,7 @@ module.exports = {
     'plugin:prettier/recommended'
   ],
   parser: '@babel/eslint-parser',
-  plugins: [
-    '@babel'
-  ],
+  plugins: ['@babel'],
   parserOptions: {
     sourceType: 'module',
     ecmaFeatures: {
@@ -15,9 +13,7 @@ module.exports = {
     },
     requireConfigFile: false,
     babelOptions: {
-      plugins: [
-        '@babel/plugin-proposal-class-properties'
-      ]
+      plugins: ['@babel/plugin-proposal-class-properties']
     }
   },
   settings: {
