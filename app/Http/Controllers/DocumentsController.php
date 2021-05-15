@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Resources\DocumentCollection;
 use App\Http\Resources\DocumentGroupCollection;
 use App\Http\Requests\Document\DocumentStoreRequest;
+use App\Http\Resources\DocumentResource;
 
 class DocumentsController extends Controller
 {
@@ -31,6 +32,12 @@ class DocumentsController extends Controller
     {
         return Inertia::render('Documents/Create', [
             'groups' => new DocumentGroupCollection(Group::all()),
+        ]);
+    }
+
+    public function edit(Document $document) {
+        return Inertia::render('Documents/Edit', [
+            'document' => new DocumentResource($document)
         ]);
     }
 
