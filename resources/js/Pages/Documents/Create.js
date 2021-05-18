@@ -50,7 +50,8 @@ const Create = () => {
             options={options}
             value={data.group_id}
             onChange={(e, data) => setData('group_id', data.value)}
-            placeholder="Group"
+            placeholder="Empty"
+            error={errors.group_id}
           />
 
           <TextArea

@@ -5,21 +5,26 @@ import { InertiaLink, usePage, useForm } from '@inertiajs/inertia-react';
 import Layout from '@/Shared/Layout';
 // import DeleteButton from '@/Shared/DeleteButton';
 import LoadingButton from '@/Shared/LoadingButton';
-import { TextArea, Input } from '@/Shared/Form';
+import { TextArea, Input, Select } from '@/Shared/Form';
 import { Form } from 'semantic-ui-react';
 import TrashedMessage from '@/Shared/TrashedMessage';
 
 const Edit = () => {
-  const { document } = usePage().props;
+  const { document, groups } = usePage().props;
   const { data, setData, errors, put, processing } = useForm({
     name: document.name || '',
     note: document.note || '',
-    group_id: document.group_id || ''
+    group_id: parseInt(document.group_id) || ''
   });
+
+  const options = groups.map(i => {
+    return { key: i.id, text: i.name, value: i.id };
+  });
+  options.unshift({ key: 0, text: 'Empty', value: null });
 
   function handleSubmit(e) {
     e.preventDefault();
-    put(route('contacts.update', document.id));
+    put(route('documents.update', document.id));
   }
 
   // function destroy() {
@@ -62,13 +67,13 @@ const Edit = () => {
             error={errors.name}
           />
 
-          {/* <Select
+          <Select
             name="group"
             options={options}
             value={data.group_id}
             onChange={(e, data) => setData('group_id', data.value)}
-            placeholder="Group"
-          /> */}
+            placeholder="Empty"
+          />
 
           <TextArea
             name="note"

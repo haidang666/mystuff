@@ -18,6 +18,7 @@ class DocumentGroupCollection extends ResourceCollection
         return $this->collection->map->only(
             'id',
             'name',
+            'deleted_at'
         );
     }
 }

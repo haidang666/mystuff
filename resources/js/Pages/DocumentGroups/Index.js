@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
+import { Icon, Confirm, Modal, Button } from 'semantic-ui-react';
+
 import Layout from '@/Shared/Layout';
 import Pagination from '@/Shared/Pagination';
 import SearchFilter from '@/Shared/SearchFilter';
-import { Icon, Confirm } from 'semantic-ui-react';
+import CreateForm from '@/Pages/DocumentGroups/Create';
 
 const Index = () => {
   const [openDeleteConfirm, setOpenDeleteConfirm] = useState(false);
   const [currentContext, setCurrentContext] = useState({});
-  const { documents } = usePage().props;
+  const [createModalOpen, setCreateModalOpen] = useState(false);
+  const { groups } = usePage().props;
   const {
     data,
     meta: { links }
-  } = documents;
+  } = groups;
 
   const handleConfirmDelete = () => {
     Inertia.delete(route('documents.destroy', currentContext.id));
@@ -29,7 +32,7 @@ const Index = () => {
     setOpenDeleteConfirm(true);
   };
 
-  const renderDeleteConfirm = () => {
+  const renderDeleteConfirmModal = () => {
     return (
       <Confirm
         open={openDeleteConfirm}
@@ -40,13 +43,37 @@ const Index = () => {
     );
   };
 
+  const renderCreateModal = () => {
+    return (
+      <Modal
+        open={createModalOpen}
+        onClose={() => setCreateModalOpen(false)}
+        closeIcon
+        trigger={
+          <Button
+            className="btn-indigo focus:outline-none"
+            color="violet"
+            onClick={() => setCreateModalOpen(true)}
+          >
+            <span>Create</span>
+            <span className="hidden md:inline"> Group</span>
+          </Button>
+        }
+      >
+        <Modal.Header>Create new group</Modal.Header>
+        <Modal.Content>
+          <CreateForm handleClose={() => setCreateModalOpen(false)} />
+        </Modal.Content>
+      </Modal>
+    );
+  };
+
   function renderTable() {
     function renderHead() {
       return (
         <thead>
           <tr className="font-bold text-left">
             <th className="px-6 pt-5 pb-4">Name</th>
-            <th className="px-6 pt-5 pb-4">Group</th>
             <th className="px-6 pt-5 pb-4">Action</th>
           </tr>
         </thead>
@@ -71,15 +98,7 @@ const Index = () => {
               )}
             </InertiaLink>
           </td>
-          <td className="border-t">
-            <InertiaLink
-              tabIndex="-1"
-              className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
-              href={route('contacts.edit', item.id)}
-            >
-              {item.group && item.group.name}
-            </InertiaLink>
-          </td>
+
           <td className="border-t">
             <InertiaLink
               tabIndex="-1"
@@ -116,24 +135,19 @@ const Index = () => {
 
   return (
     <div>
-      <h1 className="mb-8 text-3xl font-bold">Documents</h1>
+      <h1 className="mb-8 text-3xl font-bold">
+        <InertiaLink
+          href={route('documents')}
+          className="text-indigo-600 hover:text-indigo-700"
+        >
+          Documents
+        </InertiaLink>
+        <span className="font-medium text-indigo-600"> /</span> Groups
+      </h1>
 
       <div className="flex items-center justify-between mb-6">
         <SearchFilter />
-        <InertiaLink
-          className="btn-indigo focus:outline-none"
-          href={route('documents.create')}
-        >
-          <span>Create</span>
-          <span className="hidden md:inline"> Document</span>
-        </InertiaLink>
-        <InertiaLink
-          className="btn-indigo focus:outline-none"
-          href={route('documents.groups')}
-        >
-          <span className="hidden md:inline">Manage</span>
-          <span>Groups</span>
-        </InertiaLink>
+        {renderCreateModal()}
       </div>
 
       <div className="overflow-x-auto bg-white rounded shadow">
@@ -142,7 +156,7 @@ const Index = () => {
 
       <Pagination links={links} />
 
-      {renderDeleteConfirm()}
+      {renderDeleteConfirmModal()}
     </div>
   );
 };

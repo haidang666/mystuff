@@ -9,20 +9,18 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use App\Http\Resources\DocumentResource;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Resources\DocumentCollection;
 use App\Http\Resources\DocumentGroupCollection;
 use App\Http\Requests\Document\DocumentStoreRequest;
 use App\Http\Requests\Document\DocumentUpdateRequest;
 
-class DocumentsController extends Controller
+class DocumentGroupsController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Documents/Index', [
+        return Inertia::render('DocumentGroups/Index', [
             'filters' => Request::all('search'),
-            'documents' => new DocumentCollection(
-                Auth::user()->documents()
-                    ->with('group')
+            'groups' => new DocumentGroupCollection(
+                Auth::user()->documentGroups()
                     ->orderBy('created_at', 'desc')
                     ->paginate()
             ),

@@ -20,7 +20,7 @@ class DocumentResource extends JsonResource
             'group_id' => $this->group_id,
             'name' => $this->name,
             'note' => $this->note,
-            'deleted_at' => $this->deleted_at
+            'deleted_at' => $this->deleted_at,
         ];
     }
 }

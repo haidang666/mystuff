@@ -25,10 +25,10 @@ mix
     require('tailwindcss'),
     require('autoprefixer')
   ])
-  .copy(
-    'node_modules/semantic-ui-css/themes/default/assets/fonts',
-    'public/fonts/vendor/semantic-ui-css/themes/default'
-  )
+  // .copy(
+  //   'node_modules/semantic-ui-css/themes/default/assets/fonts',
+  //   'public/fonts/vendor/semantic-ui-css/themes/default'
+  // )
   .options({
     hmrOptions
   })

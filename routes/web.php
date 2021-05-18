@@ -69,6 +69,16 @@ Route::middleware(['auth'])->prefix('documents')->group(function () {
     Route::get('create')->name('documents.create')->uses('DocumentsController@create');
     Route::post('')->name('documents.store')->uses('DocumentsController@store');
     Route::delete('{note}')->name('documents.destroy')->uses('DocumentsController@destroy');
+    Route::get('{document}/edit')->name('documents.edit')->uses('DocumentsController@edit');
+    Route::put('{document}')->name('documents.update')->uses('DocumentsController@update');
+
+    // Group
+    Route::prefix('groups')->group(function () {
+        Route::get('')->name('documents.groups')->uses('DocumentGroupsController@index')->middleware('remember');
+        Route::post('')->name('documents.groups.store')->uses('DocumentGroupsController@store');
+        Route::put('{group}')->name('documents.groups.update')->uses('DocumentGroupsController@update');
+        Route::delete('{group}')->name('documents.groups.destroy')->uses('DocumentGroupsController@destroy');
+    });
 });
 
 // Reports
