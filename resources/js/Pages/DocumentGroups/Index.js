@@ -43,26 +43,20 @@ const Index = () => {
     );
   };
 
-  const renderCreateModal = () => {
+  const renderFormModal = triggerComponent => {
     return (
       <Modal
         open={createModalOpen}
         onClose={() => setCreateModalOpen(false)}
         closeIcon
-        trigger={
-          <Button
-            className="btn-indigo focus:outline-none"
-            color="violet"
-            onClick={() => setCreateModalOpen(true)}
-          >
-            <span>Create</span>
-            <span className="hidden md:inline"> Group</span>
-          </Button>
-        }
+        trigger={triggerComponent}
       >
         <Modal.Header>Create new group</Modal.Header>
         <Modal.Content>
-          <CreateForm handleClose={() => setCreateModalOpen(false)} />
+          <CreateForm
+            handleClose={() => setCreateModalOpen(false)}
+            group={currentContext}
+          />
         </Modal.Content>
       </Modal>
     );
@@ -84,10 +78,13 @@ const Index = () => {
       return (
         <tr key={index} className="hover:bg-gray-100 focus-within:bg-gray-100">
           <td className="border-t">
-            <InertiaLink
+            <span
               tabIndex="1"
-              href={route('documents.edit', item.id)}
-              className="flex items-center px-6 py-4 focus:text-indigo-700 focus:outline-none"
+              className="flex items-center px-6 py-4 focus:text-indigo-700 focus:outline-none cursor-pointer"
+              onClick={() => {
+                setCurrentContext(item);
+                setCreateModalOpen(true);
+              }}
             >
               {item.name}
               {item.deleted_at && (
@@ -96,7 +93,7 @@ const Index = () => {
                   className="flex-shrink-0 w-3 h-3 ml-2 text-gray-400 fill-current"
                 />
               )}
-            </InertiaLink>
+            </span>
           </td>
 
           <td className="border-t">
@@ -147,7 +144,22 @@ const Index = () => {
 
       <div className="flex items-center justify-between mb-6">
         <SearchFilter />
-        {renderCreateModal()}
+      </div>
+
+      <div className="flex items-center mb-6">
+        {renderFormModal(
+          <Button
+            className="btn-indigo focus:outline-none"
+            color="violet"
+            onClick={() => {
+              setCurrentContext({});
+              setCreateModalOpen(true);
+            }}
+          >
+            <span>Create</span>
+            <span className="hidden md:inline"> Group</span>
+          </Button>
+        )}
       </div>
 
       <div className="overflow-x-auto bg-white rounded shadow">

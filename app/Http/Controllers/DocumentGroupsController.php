@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Request;
 use App\Http\Resources\DocumentResource;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Resources\DocumentGroupCollection;
-use App\Http\Requests\Document\DocumentStoreRequest;
+use App\Http\Requests\Document\DocumentGroupStoreRequest;
 use App\Http\Requests\Document\DocumentUpdateRequest;
 
 class DocumentGroupsController extends Controller
@@ -27,28 +27,13 @@ class DocumentGroupsController extends Controller
         ]);
     }
 
-    public function create()
+    public function store(DocumentGroupStoreRequest $request)
     {
-        return Inertia::render('Documents/Create', [
-            'groups' => new DocumentGroupCollection(Group::all()),
-        ]);
-    }
-
-    public function edit(Document $document)
-    {
-        return Inertia::render('Documents/Edit', [
-            'document' => new DocumentResource($document),
-            'groups' => new DocumentGroupCollection(Group::all()),
-        ]);
-    }
-
-    public function store(DocumentStoreRequest $request)
-    {
-        Auth::user()->documents()->create(
+        Auth::user()->documentGroups()->create(
             $request->validated()
         );
 
-        return Redirect::route('documents')->with('success', 'Document created.');
+        return Redirect::route('documents.groups')->with('success', 'Group created.');
     }
 
     public function destroy(Document $note)

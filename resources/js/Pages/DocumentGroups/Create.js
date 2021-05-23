@@ -1,18 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from '@inertiajs/inertia-react';
 import LoadingButton from '@/Shared/LoadingButton';
 import { Input } from '@/Shared/Form';
 import { Form } from 'semantic-ui-react';
 
-const Create = ({ handleClose }) => {
+const Create = ({ handleClose, group }) => {
   const { data, setData, post, processing, errors } = useForm({
-    name: ''
+    name: group?.name || '',
+    id: group?.id || ''
   });
+  const routeName = group?.id
+    ? 'documents.groups.store'
+    : 'documents.groups.update';
 
   const handleSubmit = e => {
     e.preventDefault();
-    post(route('documents.store'), {
-      onSuccess: () => handleClose()
+
+    post(route(routeName), {
+      onSuccess: () => {
+        setData('name', '');
+        handleClose();
+      }
     });
   };
 
@@ -20,12 +28,14 @@ const Create = ({ handleClose }) => {
     <Form onSubmit={handleSubmit}>
       <Input
         name="name"
-        placeholder="Tell us more about you..."
-        value={data.name}
+        placeholder="Group name"
+        defaultValue={data.name}
         onChange={e => setData('name', e.target.value)}
         error={errors.name}
         containerClassName="p-0"
       />
+
+      <input type="hidden" value={data.id} name="id" />
 
       <div className="flex items-center justify-end mt-2">
         <LoadingButton

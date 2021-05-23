@@ -16,6 +16,8 @@ const Index = () => {
       <h1 className="mb-8 text-3xl font-bold">Users</h1>
       <div className="flex items-center justify-between mb-6">
         <SearchFilter />
+      </div>
+      <div className="flex items-center mb-6">
         <InertiaLink
           className="btn-indigo focus:outline-none"
           href={route('users.create')}

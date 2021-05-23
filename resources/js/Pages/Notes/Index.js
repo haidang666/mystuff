@@ -73,6 +73,8 @@ const Index = () => {
 
       <div className="flex items-center justify-between mb-6">
         <SearchFilter />
+      </div>
+      <div className="flex items-center mb-6">
         <InertiaLink
           className="btn-indigo focus:outline-none"
           href={route('notes.create')}

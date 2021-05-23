@@ -120,8 +120,10 @@ const Index = () => {
 
       <div className="flex items-center justify-between mb-6">
         <SearchFilter />
+      </div>
+      <div className="flex items-center mb-6">
         <InertiaLink
-          className="btn-indigo focus:outline-none"
+          className="btn-indigo focus:outline-none mr-2"
           href={route('documents.create')}
         >
           <span>Create</span>
@@ -131,8 +133,8 @@ const Index = () => {
           className="btn-indigo focus:outline-none"
           href={route('documents.groups')}
         >
-          <span className="hidden md:inline">Manage</span>
-          <span>Groups</span>
+          <span className="hidden md:inline">Manage </span>
+          <span>Group</span>
         </InertiaLink>
       </div>
 
