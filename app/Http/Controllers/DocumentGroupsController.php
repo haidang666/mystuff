@@ -7,11 +7,10 @@ use App\Models\Document\Group;
 use App\Models\Document\Document;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
-use App\Http\Resources\DocumentResource;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Resources\DocumentGroupCollection;
 use App\Http\Requests\Document\DocumentGroupStoreRequest;
-use App\Http\Requests\Document\DocumentUpdateRequest;
+use App\Http\Requests\Document\DocumentGroupUpdateRequest;
 
 class DocumentGroupsController extends Controller
 {
@@ -41,12 +40,12 @@ class DocumentGroupsController extends Controller
         return Redirect::back()->with('success', 'Document deleted.');
     }
 
-    public function update(Document $document, DocumentUpdateRequest $request)
+    public function update(Group $group, DocumentGroupUpdateRequest $request)
     {
-        $document->update(
+        $group->update(
             $request->validated()
         );
 
-        return Redirect::back()->with('success', 'Document updated.');
+        return Redirect::back()->with('success', 'Document group updated.');
     }
 }

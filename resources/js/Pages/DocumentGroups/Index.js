@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, usePage } from '@inertiajs/inertia-react';
-import { Icon, Confirm, Modal, Button } from 'semantic-ui-react';
+import { Icon, Confirm, Button } from 'semantic-ui-react';
 
 import Layout from '@/Shared/Layout';
 import Pagination from '@/Shared/Pagination';
 import SearchFilter from '@/Shared/SearchFilter';
-import CreateForm from '@/Pages/DocumentGroups/Create';
+import CreateModal from './CreateModal';
+import EditModal from './EditModal';
 
 const Index = () => {
   const [openDeleteConfirm, setOpenDeleteConfirm] = useState(false);
   const [currentContext, setCurrentContext] = useState({});
   const [createModalOpen, setCreateModalOpen] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
   const { groups } = usePage().props;
   const {
     data,
@@ -43,25 +45,6 @@ const Index = () => {
     );
   };
 
-  const renderFormModal = triggerComponent => {
-    return (
-      <Modal
-        open={createModalOpen}
-        onClose={() => setCreateModalOpen(false)}
-        closeIcon
-        trigger={triggerComponent}
-      >
-        <Modal.Header>Create new group</Modal.Header>
-        <Modal.Content>
-          <CreateForm
-            handleClose={() => setCreateModalOpen(false)}
-            group={currentContext}
-          />
-        </Modal.Content>
-      </Modal>
-    );
-  };
-
   function renderTable() {
     function renderHead() {
       return (
@@ -83,7 +66,7 @@ const Index = () => {
               className="flex items-center px-6 py-4 focus:text-indigo-700 focus:outline-none cursor-pointer"
               onClick={() => {
                 setCurrentContext(item);
-                setCreateModalOpen(true);
+                setEditModalOpen(true);
               }}
             >
               {item.name}
@@ -147,19 +130,16 @@ const Index = () => {
       </div>
 
       <div className="flex items-center mb-6">
-        {renderFormModal(
-          <Button
-            className="btn-indigo focus:outline-none"
-            color="violet"
-            onClick={() => {
-              setCurrentContext({});
-              setCreateModalOpen(true);
-            }}
-          >
-            <span>Create</span>
-            <span className="hidden md:inline"> Group</span>
-          </Button>
-        )}
+        <Button
+          className="btn-indigo focus:outline-none"
+          color="violet"
+          onClick={() => {
+            setCreateModalOpen(true);
+          }}
+        >
+          <span>Create</span>
+          <span className="hidden md:inline"> Group</span>
+        </Button>
       </div>
 
       <div className="overflow-x-auto bg-white rounded shadow">
@@ -169,6 +149,17 @@ const Index = () => {
       <Pagination links={links} />
 
       {renderDeleteConfirmModal()}
+
+      <EditModal
+        group={currentContext}
+        isOpen={editModalOpen}
+        closeModelCb={() => setEditModalOpen(false)}
+      />
+
+      <CreateModal
+        isOpen={createModalOpen}
+        closeModelCb={() => setCreateModalOpen(false)}
+      />
     </div>
   );
 };

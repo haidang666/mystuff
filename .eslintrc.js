@@ -21,6 +21,15 @@ module.exports = {
       version: 'detect'
     }
   },
+  env: {
+    browser: true,
+    es6: true,
+    node: true,
+    commonjs: true
+  },
+  globals: {
+    route: true
+  },
   rules: {
     'react/display-name': 'off',
     'react/prop-types': 'off',
@@ -29,7 +38,9 @@ module.exports = {
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
 
-    'no-undef': 'off',
+    'no-undef': 'warn',
+    'no-unused-vars': 'warn',
+    'no-process-env': 'off',
 
     // Best practice
     eqeqeq: 'warn',
