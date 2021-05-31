@@ -4,6 +4,7 @@ import { InertiaApp } from '@inertiajs/inertia-react';
 import { InertiaProgress } from '@inertiajs/progress';
 import * as Sentry from '@sentry/browser';
 import 'semantic-ui-css/semantic.min.css';
+import 'pure-react-carousel/dist/react-carousel.es.css';
 
 InertiaProgress.init({
   color: '#ED8936',

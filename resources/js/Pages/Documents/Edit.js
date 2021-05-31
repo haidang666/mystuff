@@ -1,13 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Helmet from 'react-helmet';
-import { Inertia } from '@inertiajs/inertia';
+// import { Inertia } from '@inertiajs/inertia';
 import { InertiaLink, usePage, useForm } from '@inertiajs/inertia-react';
+import { Form, Tab, Icon } from 'semantic-ui-react';
+import {
+  CarouselProvider,
+  Slider,
+  Slide,
+  ButtonBack,
+  ButtonNext,
+  Image,
+  CarouselContext
+} from 'pure-react-carousel';
+
 import Layout from '@/Shared/Layout';
 // import DeleteButton from '@/Shared/DeleteButton';
 import LoadingButton from '@/Shared/LoadingButton';
 import { TextArea, Input, Select } from '@/Shared/Form';
-import { Form } from 'semantic-ui-react';
 import TrashedMessage from '@/Shared/TrashedMessage';
+
+function CurrentSideIndex() {
+  const carouselContext = useContext(CarouselContext);
+  const [currentSlide, setCurrentSlide] = useState(
+    carouselContext.state.currentSlide
+  );
+  useEffect(() => {
+    function onChange() {
+      setCurrentSlide(carouselContext.state.currentSlide);
+    }
+    carouselContext.subscribe(onChange);
+    return () => carouselContext.unsubscribe(onChange);
+  }, [carouselContext]);
+  return currentSlide;
+}
 
 const Edit = () => {
   const { document, groups } = usePage().props;
@@ -34,9 +59,124 @@ const Edit = () => {
   // }
 
   function restore() {
-    if (confirm('Are you sure you want to restore this contact?')) {
-      Inertia.put(route('contacts.restore', document.id));
-    }
+    // if (confirm('Are you sure you want to restore this contact?')) {
+    //   Inertia.put(route('contacts.restore', document.id));
+    // }
+  }
+
+  const panes = [
+    { menuItem: '📓 Info', render: renderInfoTab },
+    { menuItem: '🗂 Pages', render: renderPageTab },
+    { menuItem: '➕ Add new page', render: renderAddPageTab }
+  ];
+
+  function renderAddPageTab() {
+    return (
+      <Tab.Pane>
+        <div>add new page</div>
+      </Tab.Pane>
+    );
+  }
+
+  function renderInfoTab() {
+    return (
+      <Tab.Pane>
+        <div className="bg-white rounded shadow">
+          <Form onSubmit={handleSubmit}>
+            <Input
+              name="name"
+              placeholder="Tell us more about you..."
+              value={data.name}
+              onChange={e => setData('name', e.target.value)}
+              error={errors.name}
+            />
+
+            <Select
+              name="group"
+              options={options}
+              value={data.group_id}
+              onChange={(e, data) => setData('group_id', data.value)}
+              placeholder="Empty"
+            />
+
+            <TextArea
+              name="note"
+              placeholder="Tell us more about you..."
+              style={{ minHeight: 150 }}
+              value={data.note}
+              onChange={e => setData('note', e.target.value)}
+              error={errors.note}
+            />
+
+            <div className="flex items-center justify-end px-8 py-4 bg-gray-100 border-t border-gray-200">
+              <LoadingButton
+                loading={processing}
+                type="submit"
+                className="btn-indigo"
+              >
+                Save
+              </LoadingButton>
+            </div>
+          </Form>
+        </div>
+      </Tab.Pane>
+    );
+  }
+
+  function carouselController() {
+    return (
+      <div className="flex justify-between content-center">
+        <ButtonBack className="btn-indigo">Back</ButtonBack>
+        <span className="pt-2">
+          <CurrentSideIndex />
+          /2
+        </span>
+        <ButtonNext className="btn-indigo">Next</ButtonNext>
+      </div>
+    );
+  }
+
+  function renderImageLoading() {
+    return <Icon loading name="spinner" />;
+  }
+
+  function renderPageTab() {
+    return (
+      <Tab.Pane>
+        <CarouselProvider
+          naturalSlideWidth={100}
+          naturalSlideHeight={125}
+          totalSlides={3}
+        >
+          {carouselController()}
+
+          <div className="mt-1 mb-1">
+            <Slider>
+              <Slide tag="a" index={0}>
+                <Image
+                  src="https://lorempixel.com/800/800/cats/0"
+                  renderLoading={renderImageLoading}
+                />
+              </Slide>
+              <Slide tag="a" index={1}>
+                <Image
+                  src="https://lorempixel.com/800/800/cats/1"
+                  renderLoading={renderImageLoading}
+                />
+              </Slide>
+              <Slide tag="a" index={2}>
+                <Image
+                  src="https://lorempixel.com/800/800/cats/2"
+                  renderLoading={renderImageLoading}
+                />
+              </Slide>
+            </Slider>
+          </div>
+
+          {carouselController()}
+        </CarouselProvider>
+      </Tab.Pane>
+    );
   }
 
   return (
@@ -50,51 +190,15 @@ const Edit = () => {
           Documents
         </InertiaLink>
         <span className="mx-2 font-medium text-indigo-600">/</span>
-        {data.name}
+        {data.name} {data.group_id && `(${options[data.group_id].text})`}
       </h1>
       {document.deleted_at && (
         <TrashedMessage onRestore={restore}>
           This document has been deleted.
         </TrashedMessage>
       )}
-      <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
-        <Form onSubmit={handleSubmit}>
-          <Input
-            name="name"
-            placeholder="Tell us more about you..."
-            value={data.name}
-            onChange={e => setData('name', e.target.value)}
-            error={errors.name}
-          />
 
-          <Select
-            name="group"
-            options={options}
-            value={data.group_id}
-            onChange={(e, data) => setData('group_id', data.value)}
-            placeholder="Empty"
-          />
-
-          <TextArea
-            name="note"
-            placeholder="Tell us more about you..."
-            style={{ minHeight: 150 }}
-            value={data.note}
-            onChange={e => setData('note', e.target.value)}
-            error={errors.note}
-          />
-
-          <div className="flex items-center justify-end px-8 py-4 bg-gray-100 border-t border-gray-200">
-            <LoadingButton
-              loading={processing}
-              type="submit"
-              className="btn-indigo"
-            >
-              Save
-            </LoadingButton>
-          </div>
-        </Form>
-      </div>
+      <Tab panes={panes} />
     </div>
   );
 };

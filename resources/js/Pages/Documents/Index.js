@@ -75,7 +75,7 @@ const Index = () => {
             <InertiaLink
               tabIndex="-1"
               className="flex items-center px-6 py-4 focus:text-indigo focus:outline-none"
-              href={route('contacts.edit', item.id)}
+              href={route('documents.edit', item.id)}
             >
               {item.group && item.group.name}
             </InertiaLink>
@@ -83,7 +83,7 @@ const Index = () => {
           <td className="border-t">
             <InertiaLink
               tabIndex="-1"
-              href={route('contacts.edit', item.id)}
+              href={route('documents.edit', item.id)}
               className="flex items-center px-4 focus:outline-none"
             >
               <Icon
