@@ -23,6 +23,7 @@ class PageFactory extends Factory
     {
         return [
             'name' => $this->faker->catchPhrase,
+            'text' => $this->faker->paragraph
         ];
     }
 }

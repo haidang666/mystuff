@@ -34,8 +34,8 @@ export default ({ className, name, label, accept, errors = [], onChange }) => {
   return (
     <div className={className}>
       {label && (
-        <label className="form-label" htmlFor={name}>
-          {label}:
+        <label className="form-label text-lg" htmlFor={name}>
+          {label}
         </label>
       )}
       <div className={`form-input p-0 ${errors.length && 'error'}`}>

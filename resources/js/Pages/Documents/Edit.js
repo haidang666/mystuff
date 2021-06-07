@@ -18,6 +18,7 @@ import Layout from '@/Shared/Layout';
 import LoadingButton from '@/Shared/LoadingButton';
 import { TextArea, Input, Select } from '@/Shared/Form';
 import TrashedMessage from '@/Shared/TrashedMessage';
+import FileInput from '@/Shared/FileInput';
 
 function CurrentSideIndex() {
   const carouselContext = useContext(CarouselContext);
@@ -31,11 +32,11 @@ function CurrentSideIndex() {
     carouselContext.subscribe(onChange);
     return () => carouselContext.unsubscribe(onChange);
   }, [carouselContext]);
-  return currentSlide;
+  return currentSlide + 1;
 }
 
 const Edit = () => {
-  const { document, groups } = usePage().props;
+  const { document, groups, pages } = usePage().props;
   const { data, setData, errors, put, processing } = useForm({
     name: document.name || '',
     note: document.note || '',
@@ -73,7 +74,46 @@ const Edit = () => {
   function renderAddPageTab() {
     return (
       <Tab.Pane>
-        <div>add new page</div>
+        <div className="bg-white rounded shadow">
+          <Form onSubmit={handleSubmit}>
+            <Input
+              name="name"
+              placeholder="Tell us more about you..."
+              // value={data.name}
+              // onChange={e => setData('name', e.target.value)}
+              // error={errors.name}
+            />
+
+            <TextArea
+              name="text"
+              placeholder="Tell us more about you..."
+              style={{ minHeight: 150 }}
+              // value={data.note}
+              // onChange={e => setData('note', e.target.value)}
+              // error={errors.note}
+            />
+
+            <FileInput
+              className="p-8 -mb-3 -mr-3"
+              label="Photo"
+              name="photo_url"
+              accept="image/*"
+              // errors={errors.photo}
+              // value={data.photo}
+              // onChange={photo => setData('photo', photo)}
+            />
+
+            <div className="flex items-center justify-end px-8 py-4 bg-gray-100 border-t border-gray-200">
+              <LoadingButton
+                loading={processing}
+                type="submit"
+                className="btn-indigo"
+              >
+                Save
+              </LoadingButton>
+            </div>
+          </Form>
+        </div>
       </Tab.Pane>
     );
   }
@@ -128,8 +168,7 @@ const Edit = () => {
       <div className="flex justify-between content-center">
         <ButtonBack className="btn-indigo">Back</ButtonBack>
         <span className="pt-2">
-          <CurrentSideIndex />
-          /2
+          <CurrentSideIndex />/{pages?.length}
         </span>
         <ButtonNext className="btn-indigo">Next</ButtonNext>
       </div>
@@ -143,38 +182,34 @@ const Edit = () => {
   function renderPageTab() {
     return (
       <Tab.Pane>
-        <CarouselProvider
-          naturalSlideWidth={100}
-          naturalSlideHeight={125}
-          totalSlides={3}
-        >
-          {carouselController()}
+        {pages?.length ? (
+          <CarouselProvider
+            naturalSlideWidth={100}
+            naturalSlideHeight={125}
+            totalSlides={pages.length}
+          >
+            {carouselController()}
 
-          <div className="mt-1 mb-1">
-            <Slider>
-              <Slide tag="a" index={0}>
-                <Image
-                  src="https://lorempixel.com/800/800/cats/0"
-                  renderLoading={renderImageLoading}
-                />
-              </Slide>
-              <Slide tag="a" index={1}>
-                <Image
-                  src="https://lorempixel.com/800/800/cats/1"
-                  renderLoading={renderImageLoading}
-                />
-              </Slide>
-              <Slide tag="a" index={2}>
-                <Image
-                  src="https://lorempixel.com/800/800/cats/2"
-                  renderLoading={renderImageLoading}
-                />
-              </Slide>
-            </Slider>
-          </div>
+            <div className="mt-1 mb-1">
+              <Slider>
+                {pages.map((page, idx) => {
+                  return (
+                    <Slide key={idx} tag="a" index={idx}>
+                      <Image
+                        src={page.photo_url}
+                        renderLoading={renderImageLoading}
+                      />
+                    </Slide>
+                  );
+                })}
+              </Slider>
+            </div>
 
-          {carouselController()}
-        </CarouselProvider>
+            {carouselController()}
+          </CarouselProvider>
+        ) : (
+          <> Empty </>
+        )}
       </Tab.Pane>
     );
   }

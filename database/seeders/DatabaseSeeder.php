@@ -79,11 +79,13 @@ class DatabaseSeeder extends Seeder
         Page::factory()->create([
             'document_id' => 1,
             'position' => 0,
+            'photo_url' => 'https://lorempixel.com/800/800/cats/0',
         ]);
 
         Page::factory()->create([
             'document_id' => 1,
             'position' => 1,
+            'photo_url' => 'https://lorempixel.com/800/800/cats/1',
         ]);
     }
 }

@@ -11,8 +11,10 @@ use App\Http\Resources\DocumentResource;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Resources\DocumentCollection;
 use App\Http\Resources\DocumentGroupCollection;
+use App\Http\Resources\DocumentPageCollection;
 use App\Http\Requests\Document\DocumentStoreRequest;
 use App\Http\Requests\Document\DocumentUpdateRequest;
+use App\Models\Document\Page;
 
 class DocumentsController extends Controller
 {
@@ -40,7 +42,8 @@ class DocumentsController extends Controller
     {
         return Inertia::render('Documents/Edit', [
             'document' => new DocumentResource($document),
-            'groups' => new DocumentGroupCollection(Group::all()),
+            'groups' => new DocumentGroupCollection(Auth::user()->documentGroups()->get()),
+            'pages' => new DocumentPageCollection($document->pages()->orderBy('position')->get()),
         ]);
     }
 

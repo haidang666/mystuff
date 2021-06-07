@@ -4,6 +4,8 @@ namespace App\Models\Document;
 
 use App\Models\User;
 use App\Models\Model;
+use App\Models\Document\Page;
+use App\Models\Document\Group;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
