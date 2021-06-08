@@ -97,6 +97,11 @@ return [
             'imports_order' => ['class', 'const', 'function'],
             'sort_algorithm' => 'length', // possible values ['alpha', 'length', 'none']
         ],
+        \SlevomatCodingStandard\Sniffs\Functions\UnusedParameterSniff::class => [
+            'exclude' => [
+                'app/Http/Resources',
+            ],
+        ],
     ],
 
     /*

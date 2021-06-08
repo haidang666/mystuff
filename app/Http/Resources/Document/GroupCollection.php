@@ -19,6 +19,6 @@ class GroupCollection extends ResourceCollection
             'id',
             'name',
             'deleted_at'
-        )->toArray($request);
+        );
     }
 }
