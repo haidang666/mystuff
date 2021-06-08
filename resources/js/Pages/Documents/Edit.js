@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Helmet from 'react-helmet';
 // import { Inertia } from '@inertiajs/inertia';
-import { InertiaLink, usePage, useForm } from '@inertiajs/inertia-react';
-import { Form, Tab, Icon } from 'semantic-ui-react';
+import { InertiaLink, usePage } from '@inertiajs/inertia-react';
+import { Tab, Icon } from 'semantic-ui-react';
 import {
   CarouselProvider,
   Slider,
@@ -15,10 +15,9 @@ import {
 
 import Layout from '@/Shared/Layout';
 // import DeleteButton from '@/Shared/DeleteButton';
-import LoadingButton from '@/Shared/LoadingButton';
-import { TextArea, Input, Select } from '@/Shared/Form';
 import TrashedMessage from '@/Shared/TrashedMessage';
-import AddPage from './AddPage';
+import AddPageTab from './AddPageTab';
+import InfoTab from './InfoTab';
 
 function CurrentSideIndex() {
   const carouselContext = useContext(CarouselContext);
@@ -37,21 +36,6 @@ function CurrentSideIndex() {
 
 const Edit = () => {
   const { document, groups, pages } = usePage().props;
-  const { data, setData, errors, put, processing } = useForm({
-    name: document.name || '',
-    note: document.note || '',
-    group_id: parseInt(document.group_id) || ''
-  });
-
-  const options = groups.map(i => {
-    return { key: i.id, text: i.name, value: i.id };
-  });
-  options.unshift({ key: 0, text: 'Empty', value: null });
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    put(route('documents.update', document.id));
-  }
 
   // function destroy() {
   //   if (confirm('Are you sure you want to delete this contact?')) {
@@ -74,7 +58,7 @@ const Edit = () => {
   function renderAddPageTab() {
     return (
       <Tab.Pane>
-        <AddPage />
+        <AddPageTab />
       </Tab.Pane>
     );
   }
@@ -82,44 +66,7 @@ const Edit = () => {
   function renderInfoTab() {
     return (
       <Tab.Pane>
-        <div className="bg-white rounded shadow">
-          <Form onSubmit={handleSubmit}>
-            <Input
-              name="name"
-              placeholder="Tell us more about you..."
-              value={data.name}
-              onChange={e => setData('name', e.target.value)}
-              error={errors.name}
-            />
-
-            <Select
-              name="group"
-              options={options}
-              value={data.group_id}
-              onChange={(e, data) => setData('group_id', data.value)}
-              placeholder="Empty"
-            />
-
-            <TextArea
-              name="note"
-              placeholder="Tell us more about you..."
-              style={{ minHeight: 150 }}
-              value={data.note}
-              onChange={e => setData('note', e.target.value)}
-              error={errors.note}
-            />
-
-            <div className="flex items-center justify-end px-8 py-4 bg-gray-100 border-t border-gray-200">
-              <LoadingButton
-                loading={processing}
-                type="submit"
-                className="btn-indigo"
-              >
-                Save
-              </LoadingButton>
-            </div>
-          </Form>
-        </div>
+        <InfoTab document={document} groups={groups} />
       </Tab.Pane>
     );
   }
@@ -177,7 +124,7 @@ const Edit = () => {
 
   return (
     <div>
-      <Helmet title={`${data.name}`} />
+      <Helmet title={`${document.name}`} />
       <h1 className="mb-8 text-3xl font-bold">
         <InertiaLink
           href={route('documents')}
@@ -186,7 +133,8 @@ const Edit = () => {
           Documents
         </InertiaLink>
         <span className="mx-2 font-medium text-indigo-600">/</span>
-        {data.name} {data.group_id && `(${options[data.group_id].text})`}
+        {document.name}{' '}
+        {document.group_id && `(${groups[document.group_id - 1].text})`}
       </h1>
       {document.deleted_at && (
         <TrashedMessage onRestore={restore}>

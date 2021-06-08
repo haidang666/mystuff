@@ -6,16 +6,16 @@ import FileInput from '@/Shared/FileInput';
 import LoadingButton from '@/Shared/LoadingButton';
 import { TextArea, Input } from '@/Shared/Form';
 
-const AddPage = () => {
+const AddPageTab = () => {
   const { data, setData, errors, post, processing } = useForm({
     name: '',
-    note: '',
+    text: '',
     photo: ''
   });
 
   function handleSubmit(e) {
     e.preventDefault();
-    post(route('documents.update', document.id));
+    post(route('documents'));
   }
 
   return (
@@ -33,9 +33,9 @@ const AddPage = () => {
           name="text"
           placeholder="Tell us more about you..."
           style={{ minHeight: 150 }}
-          value={data.note}
+          value={data.text}
           onChange={e => setData('note', e.target.value)}
-          error={errors.note}
+          error={errors.text}
         />
 
         <FileInput
@@ -62,4 +62,4 @@ const AddPage = () => {
   );
 };
 
-export default AddPage;
+export default AddPageTab;
