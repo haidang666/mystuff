@@ -93,10 +93,6 @@ return [
             'lineLimit' => 120,
             'absoluteLineLimit' => 160,
         ],
-        \ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff::class => [
-            'minLength' => 3,
-            'allowedShortNames' => ['i', 'id', 'e'],
-        ],
         \PhpCsFixer\Fixer\Import\OrderedImportsFixer::class => [
             'imports_order' => ['class', 'const', 'function'],
             'sort_algorithm' => 'length', // possible values ['alpha', 'length', 'none']

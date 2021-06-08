@@ -1,24 +1,25 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Document;
 
 use Inertia\Inertia;
 use App\Models\Document\Group;
 use App\Models\Document\Document;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Resources\DocumentGroupCollection;
-use App\Http\Requests\Document\DocumentGroupStoreRequest;
-use App\Http\Requests\Document\DocumentGroupUpdateRequest;
+use App\Http\Resources\Document\GroupCollection;
+use App\Http\Requests\Document\GroupStoreRequest;
+use App\Http\Requests\Document\GroupUpdateRequest;
 
-class DocumentGroupsController extends Controller
+class GroupController extends Controller
 {
     public function index()
     {
         return Inertia::render('DocumentGroups/Index', [
             'filters' => Request::all('search'),
-            'groups' => new DocumentGroupCollection(
+            'groups' => new GroupCollection(
                 Auth::user()->documentGroups()
                     ->orderBy('created_at', 'desc')
                     ->paginate()
@@ -26,7 +27,7 @@ class DocumentGroupsController extends Controller
         ]);
     }
 
-    public function store(DocumentGroupStoreRequest $request)
+    public function store(GroupStoreRequest $request)
     {
         Auth::user()->documentGroups()->create(
             $request->validated()
@@ -40,7 +41,7 @@ class DocumentGroupsController extends Controller
         return Redirect::back()->with('success', 'Document deleted.');
     }
 
-    public function update(Group $group, DocumentGroupUpdateRequest $request)
+    public function update(Group $group, GroupUpdateRequest $request)
     {
         $group->update(
             $request->validated()

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Document;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class DocumentPageCollection extends ResourceCollection
+class GroupCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -18,9 +18,7 @@ class DocumentPageCollection extends ResourceCollection
         return $this->collection->map->only(
             'id',
             'name',
-            'photo_url',
-            'text',
-            'position',
-        );
+            'deleted_at'
+        )->toArray($request);
     }
 }

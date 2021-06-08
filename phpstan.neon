@@ -19,5 +19,5 @@ parameters:
 #        - '#Call to an undefined method Illuminate\\Support\\HigherOrder#'
 #        - path: 'database/factories/*'
 #          message: '#Undefined variable: \$factory#'
-        - '#should return array but returns Illuminate\\Support\\HigherOrderCollectionProxy#'
+        - '#should return array but returns Illuminate\\Support\\Enumerable#'
         - '#Method Illuminate\\Support\\Enumerable<mixed,mixed>::only\(\)#'

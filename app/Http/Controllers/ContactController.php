@@ -13,7 +13,7 @@ use App\Http\Requests\ContactStoreRequest;
 use App\Http\Requests\ContactUpdateRequest;
 use App\Http\Resources\UserOrganizationCollection;
 
-class ContactsController extends Controller
+class ContactController extends Controller
 {
     public function index()
     {

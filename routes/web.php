@@ -46,38 +46,38 @@ Route::middleware(['auth'])->prefix('organizations')->group(function () {
 
 // Contacts
 Route::middleware(['auth'])->prefix('contacts')->group(function () {
-    Route::get('')->name('contacts')->uses('ContactsController@index')->middleware('remember');
-    Route::post('')->name('contacts.store')->uses('ContactsController@store');
-    Route::get('create')->name('contacts.create')->uses('ContactsController@create');
-    Route::get('{contact}/edit')->name('contacts.edit')->uses('ContactsController@edit');
-    Route::put('{contact}')->name('contacts.update')->uses('ContactsController@update');
-    Route::delete('{contact}')->name('contacts.destroy')->uses('ContactsController@destroy');
-    Route::put('{contact}/restore')->name('contacts.restore')->uses('ContactsController@restore');
+    Route::get('')->name('contacts')->uses('ContactController@index')->middleware('remember');
+    Route::post('')->name('contacts.store')->uses('ContactController@store');
+    Route::get('create')->name('contacts.create')->uses('ContactController@create');
+    Route::get('{contact}/edit')->name('contacts.edit')->uses('ContactController@edit');
+    Route::put('{contact}')->name('contacts.update')->uses('ContactController@update');
+    Route::delete('{contact}')->name('contacts.destroy')->uses('ContactController@destroy');
+    Route::put('{contact}/restore')->name('contacts.restore')->uses('ContactController@restore');
 });
 
 // Notes
 Route::middleware(['auth'])->prefix('notes')->group(function () {
-    Route::get('')->name('notes')->uses('NotesController@index')->middleware('remember');
-    Route::get('create')->name('notes.create')->uses('NotesController@create');
-    Route::post('')->name('notes.store')->uses('NotesController@store');
-    Route::delete('{note}')->name('notes.destroy')->uses('NotesController@destroy');
+    Route::get('')->name('notes')->uses('NoteController@index')->middleware('remember');
+    Route::get('create')->name('notes.create')->uses('NoteController@create');
+    Route::post('')->name('notes.store')->uses('NoteController@store');
+    Route::delete('{note}')->name('notes.destroy')->uses('NoteController@destroy');
 });
 
 // Documents
 Route::middleware(['auth'])->prefix('documents')->group(function () {
-    Route::get('')->name('documents')->uses('DocumentsController@index')->middleware('remember');
-    Route::get('create')->name('documents.create')->uses('DocumentsController@create');
-    Route::post('')->name('documents.store')->uses('DocumentsController@store');
-    Route::delete('{note}')->name('documents.destroy')->uses('DocumentsController@destroy');
-    Route::get('{document}/edit')->name('documents.edit')->uses('DocumentsController@edit');
-    Route::put('{document}')->name('documents.update')->uses('DocumentsController@update');
+    Route::get('')->name('documents')->uses('Document\DocumentController@index')->middleware('remember');
+    Route::get('create')->name('documents.create')->uses('Document\DocumentController@create');
+    Route::post('')->name('documents.store')->uses('Document\DocumentController@store');
+    Route::delete('{note}')->name('documents.destroy')->uses('Document\DocumentController@destroy');
+    Route::get('{document}/edit')->name('documents.edit')->uses('Document\DocumentController@edit');
+    Route::put('{document}')->name('documents.update')->uses('Document\DocumentController@update');
 
     // Group
     Route::prefix('groups')->group(function () {
-        Route::get('')->name('documents.groups')->uses('DocumentGroupsController@index')->middleware('remember');
-        Route::post('')->name('documents.groups.store')->uses('DocumentGroupsController@store');
-        Route::put('{group}')->name('documents.groups.update')->uses('DocumentGroupsController@update');
-        Route::delete('{group}')->name('documents.groups.destroy')->uses('DocumentGroupsController@destroy');
+        Route::get('')->name('documents.groups')->uses('Document\GroupController@index')->middleware('remember');
+        Route::post('')->name('documents.groups.store')->uses('Document\GroupController@store');
+        Route::put('{group}')->name('documents.groups.update')->uses('Document\GroupController@update');
+        Route::delete('{group}')->name('documents.groups.destroy')->uses('Document\GroupController@destroy');
     });
 });
 

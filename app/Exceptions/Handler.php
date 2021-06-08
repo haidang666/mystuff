@@ -12,7 +12,7 @@ class Handler extends ExceptionHandler
     /**
      * A list of the exception types that are not reported.
      *
-     * @var array
+     * @var array<string>
      */
     protected $dontReport = [
         // empty comment
@@ -31,15 +31,15 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param  \Exception  $exception
+     * @param  \Exception  $e
      */
-    public function report(Throwable $exception)
+    public function report(Throwable $e)
     {
-        if (app()->bound('sentry') && $this->shouldReport($exception)) {
-            app('sentry')->captureException($exception);
+        if (app()->bound('sentry') && $this->shouldReport($e)) {
+            app('sentry')->captureException($e);
         }
 
-        parent::report($exception);
+        parent::report($e);
     }
 
     /**

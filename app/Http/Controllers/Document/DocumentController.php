@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Document;
 
 use Inertia\Inertia;
 use App\Models\Document\Group;
 use App\Models\Document\Document;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
-use App\Http\Resources\DocumentResource;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Resources\DocumentCollection;
-use App\Http\Resources\DocumentGroupCollection;
-use App\Http\Resources\DocumentPageCollection;
+use App\Http\Resources\Document\PageCollection;
+use App\Http\Resources\Document\GroupCollection;
+use App\Http\Resources\Document\DocumentResource;
+use App\Http\Resources\Document\DocumentCollection;
 use App\Http\Requests\Document\DocumentStoreRequest;
 use App\Http\Requests\Document\DocumentUpdateRequest;
-use App\Models\Document\Page;
 
-class DocumentsController extends Controller
+class DocumentController extends Controller
 {
     public function index()
     {
@@ -34,7 +34,7 @@ class DocumentsController extends Controller
     public function create()
     {
         return Inertia::render('Documents/Create', [
-            'groups' => new DocumentGroupCollection(Group::all()),
+            'groups' => new GroupCollection(Group::all()),
         ]);
     }
 
@@ -42,8 +42,8 @@ class DocumentsController extends Controller
     {
         return Inertia::render('Documents/Edit', [
             'document' => new DocumentResource($document),
-            'groups' => new DocumentGroupCollection(Auth::user()->documentGroups()->get()),
-            'pages' => new DocumentPageCollection($document->pages()->orderBy('position')->get()),
+            'groups' => new GroupCollection(Auth::user()->documentGroups()->get()),
+            'pages' => new PageCollection($document->pages()->orderBy('position')->get()),
         ]);
     }
 

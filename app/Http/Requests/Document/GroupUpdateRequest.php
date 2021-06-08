@@ -4,7 +4,7 @@ namespace App\Http\Requests\Document;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DocumentGroupStoreRequest extends FormRequest
+class GroupUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,6 +25,7 @@ class DocumentGroupStoreRequest extends FormRequest
     {
         return [
             'name' => ['required','max:200'],
+            'id' => ['required'],
         ];
     }
 }

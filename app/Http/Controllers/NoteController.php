@@ -10,7 +10,7 @@ use App\Http\Requests\NoteStoreRequest;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
 
-class NotesController extends Controller
+class NoteController extends Controller
 {
     public function index()
     {

@@ -122,7 +122,7 @@ const Index = () => {
         >
           Documents
         </InertiaLink>
-        <span className="font-medium text-indigo-600"> /</span> Groups
+        <span className="font-medium text-indigo-600"> /</span> Manage Groups
       </h1>
 
       <div className="flex items-center justify-between mb-6">

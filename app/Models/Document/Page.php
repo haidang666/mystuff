@@ -13,6 +13,19 @@ class Page extends Model
 
     protected $table = 'document_pages';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<string>
+     */
+    protected $fillable = [
+        'document_id',
+        'name',
+        'photo_url',
+        'text',
+        'position',
+    ];
+
     public function document(): BelongsTo
     {
         return $this->belongsTo(Document::class);
