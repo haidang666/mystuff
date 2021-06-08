@@ -69,7 +69,7 @@ Route::middleware(['auth'])->prefix('documents')->group(function () {
     Route::get('create')->name('documents.create')->uses('Document\DocumentController@create');
     Route::post('')->name('documents.store')->uses('Document\DocumentController@store');
     Route::delete('{note}')->name('documents.destroy')->uses('Document\DocumentController@destroy');
-    Route::get('{document}/edit')->name('documents.edit')->uses('Document\DocumentController@edit');
+    Route::get('{document}/show')->name('documents.show')->uses('Document\DocumentController@show');
     Route::put('{document}')->name('documents.update')->uses('Document\DocumentController@update');
 
     // Group

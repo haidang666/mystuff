@@ -15,6 +15,16 @@ class Group extends Model
 
     protected $table = 'document_groups';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<string>
+     */
+    protected $fillable = [
+        'user_id',
+        'name'
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

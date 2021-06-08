@@ -38,9 +38,9 @@ class DocumentController extends Controller
         ]);
     }
 
-    public function edit(Document $document)
+    public function show(Document $document)
     {
-        return Inertia::render('Documents/Edit', [
+        return Inertia::render('Documents/View', [
             'document' => new DocumentResource($document),
             'groups' => new GroupCollection(Auth::user()->documentGroups()->get()),
             'pages' => new PageCollection($document->pages()->orderBy('position')->get()),

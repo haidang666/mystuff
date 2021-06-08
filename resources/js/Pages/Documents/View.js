@@ -34,7 +34,7 @@ function CurrentSideIndex() {
   return currentSlide + 1;
 }
 
-const Edit = () => {
+const View = () => {
   const { document, groups, pages } = usePage().props;
 
   // function destroy() {
@@ -134,7 +134,7 @@ const Edit = () => {
         </InertiaLink>
         <span className="mx-2 font-medium text-indigo-600">/</span>
         {document.name}{' '}
-        {document.group_id && `(${groups[document.group_id - 1].text})`}
+        {document.group_id && `(${groups[document.group_id - 1].name})`}
       </h1>
       {document.deleted_at && (
         <TrashedMessage onRestore={restore}>
@@ -147,6 +147,6 @@ const Edit = () => {
   );
 };
 
-Edit.layout = page => <Layout>{page}</Layout>;
+View.layout = page => <Layout>{page}</Layout>;
 
-export default Edit;
+export default View;
