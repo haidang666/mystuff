@@ -102,6 +102,9 @@ return [
                 'app/Http/Resources',
             ],
         ],
+        \NunoMaduro\PhpInsights\Domain\Insights\CyclomaticComplexityIsHigh::class => [
+            'maxComplexity' => 10,
+        ]       
     ],
 
     /*

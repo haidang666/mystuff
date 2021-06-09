@@ -17,7 +17,7 @@
         "laravel/framework": "^v8.45.1",
         "laravel/tinker": "^v2.6.1",
         "laravel/ui": "^v3.3.0",
-        "league/glide": "2.0.x-dev",
+        "league/glide": "^2.0.0",
         "reinink/remember-query-strings": "^v0.1.0",
         "sentry/sentry-laravel": "^1.9.0",
         "tightenco/ziggy": "^v0.8.1"
