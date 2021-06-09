@@ -127,7 +127,7 @@ const View = () => {
       <Helmet title={`${document.name}`} />
       <h1 className="mb-8 text-3xl font-bold">
         <InertiaLink
-          href={route('documents')}
+          href={route('documents.index')}
           className="text-indigo-600 hover:text-indigo-700"
         >
           Documents

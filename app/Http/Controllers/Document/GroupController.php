@@ -33,7 +33,7 @@ class GroupController extends Controller
             $request->validated()
         );
 
-        return Redirect::route('documents.groups')->with('success', 'Group created.');
+        return Redirect::route('documents.groups.index')->with('success', 'Group created.');
     }
 
     public function destroy(Document $note)

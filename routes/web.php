@@ -56,28 +56,33 @@ Route::middleware(['auth'])->prefix('contacts')->group(function () {
 });
 
 // Notes
-Route::middleware(['auth'])->prefix('notes')->group(function () {
-    Route::get('')->name('notes')->uses('NoteController@index')->middleware('remember');
-    Route::get('create')->name('notes.create')->uses('NoteController@create');
-    Route::post('')->name('notes.store')->uses('NoteController@store');
-    Route::delete('{note}')->name('notes.destroy')->uses('NoteController@destroy');
+Route::middleware(['auth'])->prefix('notes')->name('notes.')->group(function () {
+    Route::get('')->name('index')->uses('NoteController@index')->middleware('remember');
+    Route::get('create')->name('create')->uses('NoteController@create');
+    Route::post('')->name('store')->uses('NoteController@store');
+    Route::delete('{note}')->name('destroy')->uses('NoteController@destroy');
 });
 
 // Documents
-Route::middleware(['auth'])->prefix('documents')->group(function () {
-    Route::get('')->name('documents')->uses('Document\DocumentController@index')->middleware('remember');
-    Route::get('create')->name('documents.create')->uses('Document\DocumentController@create');
-    Route::post('')->name('documents.store')->uses('Document\DocumentController@store');
-    Route::delete('{note}')->name('documents.destroy')->uses('Document\DocumentController@destroy');
-    Route::get('{document}/show')->name('documents.show')->uses('Document\DocumentController@show');
-    Route::put('{document}')->name('documents.update')->uses('Document\DocumentController@update');
+Route::middleware(['auth'])->prefix('documents')->name('documents.')->namespace('Document')->group(function () {
+    Route::get('')->name('index')->uses('DocumentController@index')->middleware('remember');
+    Route::get('create')->name('create')->uses('DocumentController@create');
+    Route::post('')->name('store')->uses('DocumentController@store');
+    Route::delete('{note}')->name('destroy')->uses('DocumentController@destroy');
+    Route::get('{document}/show')->name('show')->uses('DocumentController@show');
+    Route::put('{document}')->name('update')->uses('DocumentController@update');
 
     // Group
-    Route::prefix('groups')->group(function () {
-        Route::get('')->name('documents.groups')->uses('Document\GroupController@index')->middleware('remember');
-        Route::post('')->name('documents.groups.store')->uses('Document\GroupController@store');
-        Route::put('{group}')->name('documents.groups.update')->uses('Document\GroupController@update');
-        Route::delete('{group}')->name('documents.groups.destroy')->uses('Document\GroupController@destroy');
+    Route::prefix('groups')->name('groups.')->group(function () {
+        Route::get('')->name('index')->uses('GroupController@index')->middleware('remember');
+        Route::post('')->name('store')->uses('GroupController@store');
+        Route::put('{group}')->name('update')->uses('GroupController@update');
+        Route::delete('{group}')->name('destroy')->uses('GroupController@destroy');
+    });
+
+    // Page
+    Route::prefix('{document}/pages')->name('pages.')->group(function () {
+        Route::post('')->name('store')->uses('PageController@store');
     });
 });
 

@@ -15,7 +15,7 @@ const AddPageTab = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    post(route('documents'));
+    post(route('documents.index'));
   }
 
   return (

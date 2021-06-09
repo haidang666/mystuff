@@ -49,11 +49,11 @@ class DocumentController extends Controller
 
     public function store(DocumentStoreRequest $request)
     {
-        Auth::user()->documents()->create(
+        $newDocument = Auth::user()->documents()->create(
             $request->validated()
         );
 
-        return Redirect::route('documents')->with('success', 'Document created.');
+        return Redirect::route('documents.show', ['document' => $newDocument->id])->with('success', 'Document created.');
     }
 
     public function destroy(Document $note)

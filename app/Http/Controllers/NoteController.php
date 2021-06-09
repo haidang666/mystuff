@@ -37,7 +37,7 @@ class NoteController extends Controller
             $request->validated()
         );
 
-        return Redirect::route('notes')->with('success', 'Note created.');
+        return Redirect::route('notes.index')->with('success', 'Note created.');
     }
 
     public function destroy(Note $note)

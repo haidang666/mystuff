@@ -131,7 +131,7 @@ const Index = () => {
         </InertiaLink>
         <InertiaLink
           className="btn-indigo focus:outline-none"
-          href={route('documents.groups')}
+          href={route('documents.groups.index')}
         >
           <span className="hidden md:inline">Manage </span>
           <span>Group</span>
