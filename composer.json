@@ -11,15 +11,14 @@
         "php": "^7.4",
         "ext-exif": "*",
         "ext-gd": "*",
-        "facade/ignition": "^2.10.1",
+        "facade/ignition": "^2.10.2",
         "fideloper/proxy": "^4.4.1",
-        "inertiajs/inertia-laravel": "^v0.3.6",
+        "inertiajs/inertia-laravel": "v0.4.2",
         "laravel/framework": "v8.46.0",
         "laravel/tinker": "^v2.6.1",
         "laravel/ui": "^v3.3.0",
         "league/glide": "^2.0.0",
         "reinink/remember-query-strings": "^v0.1.0",
-        "sentry/sentry-laravel": "^1.9.0",
         "tightenco/ziggy": "v1.2.0"
     },
     "require-dev": {
