@@ -58,7 +58,7 @@ phpstyle:
 	@$(MAKE) phpinsights
 
 phpfix:
-	@php ./vendor/bin/php-cs-fixer fix --config .php_cs
+	@php ./vendor/bin/php-cs-fixer fix
 
 lint:
 	@npm run lint

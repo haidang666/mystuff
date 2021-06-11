@@ -59,7 +59,7 @@ class UsersController extends Controller
         return Redirect::back()->with('success', 'User updated.');
     }
 
-    public function destroy(User $user, UserDeleteRequest $request)
+    public function destroy(User $user)
     {
         $user->delete();
 

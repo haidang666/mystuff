@@ -53,7 +53,8 @@ class DocumentController extends Controller
             $request->validated()
         );
 
-        return Redirect::route('documents.show', ['document' => $newDocument->id])->with('success', 'Document created.');
+        return Redirect::route('documents.show', ['document' => $newDocument->id])
+            ->with('success', 'Document created.');
     }
 
     public function destroy(Document $note)
