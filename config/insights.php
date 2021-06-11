@@ -104,7 +104,7 @@ return [
         ],
         \NunoMaduro\PhpInsights\Domain\Insights\CyclomaticComplexityIsHigh::class => [
             'maxComplexity' => 10,
-        ]       
+        ],
     ],
 
     /*

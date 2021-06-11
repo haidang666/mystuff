@@ -10,13 +10,13 @@ $finder = Symfony\Component\Finder\Finder::create()
     ->notName('_ide_helper.php')
     ->ignoreVCS(true);
 
-return PhpCsFixer\Config::create()
+return (new PhpCsFixer\Config())
     ->setRules([
         '@PSR2' => true,
         'array_syntax' => ['syntax' => 'short'],
         'ordered_imports' => [
             'imports_order' => ['class', 'const', 'function'],
-            'sortAlgorithm' => 'length'
+            'sort_algorithm' => 'length'
         ],
         'single_quote' => true,
         'phpdoc_summary' => true,
@@ -26,7 +26,7 @@ return PhpCsFixer\Config::create()
         'no_trailing_comma_in_list_call' => false,
         'no_whitespace_in_blank_line' => true,
         'no_whitespace_before_comma_in_array' => true,
-        'trailing_comma_in_multiline_array' => true,
+        'trailing_comma_in_multiline' => true,
         'function_typehint_space' => true,
         'phpdoc_order' => true,
         'phpdoc_no_empty_return' => true,
