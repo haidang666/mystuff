@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "mix watch --hot",
-    "development": "mix",
+    "build:js": "mix",
     "watch": "mix watch",
     "watch-poll": "mix watch -- --watch-options-poll=1000",
     "prod": "npm run production",

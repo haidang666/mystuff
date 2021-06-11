@@ -24,12 +24,13 @@ const Edit = () => {
     // you SHOULD send POST request and fake the PUT request like this.
     _method: 'PUT'
   });
+  const routeLink = route('users.update', user.id);
 
   function handleSubmit(e) {
     e.preventDefault();
 
     // NOTE: We are using POST method here, not PUT/PACH. See comment above.
-    post(route('users.update', user.id));
+    post(routeLink);
   }
 
   function destroy() {
