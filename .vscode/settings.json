@@ -1,59 +1,88 @@
 {
-  "workbench.iconTheme": "material-icon-theme",
-  "workbench.colorTheme": "Dracula Soft",
-  "window.zoomLevel": 1,
-  "editor.fontSize": 12,
-  "editor.tabSize": 2,
-  "editor.minimap.enabled": false,
-  "editor.lineNumbers": "on",
-  "explorer.confirmDelete": false,
-  "editor.wordWrap": "on",
-  "emmet.includeLanguages": {
-      "javascript": "javascriptreact",
-  },
-  "gitlens.keymap": "alternate",
-  "editor.codeActionsOnSave": {
-      "source.fixAll": true,
-      "source.fixAll.eslint": true
-  },
-  "workbench.startupEditor": "newUntitledFile",
-  "javascript.referencesCodeLens.enabled": true,
-  "typescript.referencesCodeLens.enabled": true,
-  "typescript.implementationsCodeLens.enabled": true,
-  "explorer.confirmDragAndDrop": false,
-  "html.autoClosingTags": false,
-  "html.format.enable": false,
-  "html.format.preserveNewLines": false,
-  "eslint.workingDirectories": [{ "mode": "auto"}],
-  "search.exclude": {
-      "**/node_modules": true,
-      "**/bower_components": true
-  },
-  "editor.largeFileOptimizations": false,
-  "files.associations": {
-      ".php_cs": "php"
-  },
-  "editor.fontFamily": "Fira Code",
-  "editor.fontLigatures": true,
-  "workbench.colorCustomizations": {
-      "editor.foldBackground": "#f1e0e000",
-      "editorIndentGuide.activeBackground": "#d613d6",
-  },
-  "git.autofetch": true,
-  "javascript.updateImportsOnFileMove.enabled": "always",
-  "[javascript]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "editor.suggestSelection": "first",
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "eslint.alwaysShowStatus": true,
-  "eslint.codeAction.showDocumentation": {
-      "enable": true
-  },
-  "[json]": {
-      "editor.defaultFormatter": "vscode.json-language-features"
-  },
-  "workbench.tree.renderIndentGuides": "always",
-  "editor.renderControlCharacters": true,
-  "editor.renderWhitespace": "all"
+	"workbench.iconTheme": "material-icon-theme",
+	"workbench.colorTheme": "Dracula Soft",
+	"workbench.colorCustomizations": {
+		"editor.foldBackground": "#f1e0e000",
+		"editorIndentGuide.activeBackground": "#d613d6"
+	},
+	"workbench.startupEditor": "none",
+	"workbench.editorAssociations": [],
+	"workbench.tree.renderIndentGuides": "always",
+	"window.zoomLevel": 1,
+	"editor.fontSize": 12,
+	"editor.minimap.enabled": false,
+	"editor.lineNumbers": "on",
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnPaste": true,
+	"editor.formatOnSaveMode": "modifications",
+	"editor.fontFamily": "Fira Code",
+	"editor.fontLigatures": true,
+	"explorer.confirmDelete": false,
+	"editor.wordWrap": "on",
+	"editor.codeActionsOnSave": {
+		"source.fixAll": true,
+		"source.fixAll.eslint": true
+	},
+	"editor.insertSpaces": false,
+	"editor.suggestSelection": "first",
+	"editor.renderControlCharacters": true,
+	"editor.renderWhitespace": "all",
+	"editor.largeFileOptimizations": false,
+	"editor.detectIndentation": false,
+	"emmet.includeLanguages": {
+		"javascript": "javascriptreact"
+	},
+	"gitlens.keymap": "alternate",
+	"javascript.referencesCodeLens.enabled": true,
+	"javascript.updateImportsOnFileMove.enabled": "always",
+	"typescript.referencesCodeLens.enabled": true,
+	"typescript.implementationsCodeLens.enabled": true,
+	"explorer.confirmDragAndDrop": false,
+	"html.autoClosingTags": false,
+	"html.format.enable": false,
+	"html.format.preserveNewLines": false,
+	"eslint.workingDirectories": [
+		{
+			"mode": "auto"
+		}
+	],
+	"eslint.alwaysShowStatus": true,
+	"eslint.codeAction.showDocumentation": {
+		"enable": true
+	},
+	"search.exclude": {
+		"**/node_modules": true,
+		"**/bower_components": true
+	},
+	"files.associations": {
+		".php_cs": "php"
+	},
+	"git.autofetch": true,
+	"prettier.tabWidth": 4,
+	"prettier.useTabs": true,
+	"intelephense.diagnostics.undefinedTypes": false,
+	"intelephense.diagnostics.undefinedFunctions": false,
+	"intelephense.diagnostics.undefinedConstants": false,
+	"intelephense.diagnostics.undefinedClassConstants": false,
+	"intelephense.diagnostics.undefinedMethods": false,
+	"intelephense.diagnostics.undefinedProperties": false,
+	"intelephense.diagnostics.undefinedVariables": false,
+	"[json]": {
+		"editor.defaultFormatter": "vscode.json-language-features",
+		"editor.tabSize": 2,
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "vscode.json-language-features",
+		"editor.tabSize": 2,
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode",
+		"editor.tabSize": 2,
+	},
+	"[php]": {
+		"editor.tabSize": 4,
+	},
+	"[html]": {
+		"editor.tabSize": 4,
+	}
 }
