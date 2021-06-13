@@ -1,0 +1,15 @@
+{
+	"recommendations": [
+		"bmewburn.vscode-intelephense-client",
+		"CoenraadS.bracket-pair-colorizer-2",
+		"dbaeumer.vscode-eslint",
+		"dracula-theme.theme-dracula",
+		"eamodio.gitlens",
+		"esbenp.prettier-vscode",
+		"felixfbecker.php-intellisense",
+		"mgmcdermott.vscode-language-babel",
+		"oderwat.indent-rainbow",
+		"pflannery.vscode-versionlens",
+		"PKief.material-icon-theme"
+	]
+}
